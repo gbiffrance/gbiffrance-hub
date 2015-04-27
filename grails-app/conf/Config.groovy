@@ -11,7 +11,7 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-grails.project.groupId = "au.org.ala" // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = "" // change this to alter the default package name and Maven publishing destination
 
 default_config = "/data/${appName}/config/${appName}-config.properties"
 if(!grails.config.locations || !(grails.config.locations instanceof List)) {
@@ -30,8 +30,8 @@ println "default_config = ${default_config}"
 /******************************************************************************\
  *  SKINNING
 \******************************************************************************/
-skin.layout = 'generic'
-skin.orgNameLong = "Generic Data Portal"
+skin.layout = 'alf'
+skin.orgNameLong = "Atlas of Living France"
 skin.orgNameShort = "Occurrences"
 // whether crumb trail should include a home link that is external to this webabpp - ala.baseUrl is used if true
 skin.includeBaseUrl = true
@@ -42,7 +42,7 @@ chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
 map.overlay.url = ""
 map.overlay.name = ""
-
+biocache.baseUrl="http://10.1.1.2/biocache-service"
 /******************************************************************************\
  *  MISC
 \******************************************************************************/
@@ -120,7 +120,7 @@ grails.hibernate.cache.queries = false
 
 environments {
     development {
-//        grails.serverURL = 'http://dev.ala.org.au:8080/' + appName
+//        grails.serverURL = 'http://dev.ala..au:8080/' + appName
 //        serverName='http://dev.ala.org.au:8080'
 //        security.cas.appServerName = serverName
 //        security.cas.contextPath = "/${appName}"
@@ -186,3 +186,7 @@ log4j = {
             'au.org.ala.biocache.hubs',
             'au.org.ala.biocache.hubs.OccurrenceTagLib'
 }
+
+exploreYourArea.lat = "2.4"
+exploreYourArea.lng = "46.6"
+exploreYourArea.location = "Saulzais-le-Potier"

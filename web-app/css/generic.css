@@ -1,6 +1,483 @@
+body{
+	font-family: "Open Sans",sans-serif;   
+	background-color: #f2f2f2;
+	font-size: 14px;
+	line-height: 1.4em;
+    color: rgb(51,​ 51,​ 51);
+}
 
+#main-content{
+	width: 1170px;
+	padding: 10px 10px 10px 20px;
+}
+
+.clear-both{
+    clear:both;
+}
+
+.clear-left{
+    clear:left
+}
+
+
+
+/* HEADER */
+header{
+	background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 1170px;
+}
+
+header img {
+    left: 20px;
+    position: relative;
+    top: 10px;
+}
+
+.container-fluid, .container{
+	padding:0;
+	background: white;
+}
+
+/* MENU */
+.navbar .nav {
+	display: block;
+    float: left;
+    left: 0;
+    margin: 0 10px 0 0;
+    position: relative;
+}
+
+.navbar-inner .container-fluid, .navbar-inner .container {
+    background: linear-gradient(to bottom, rgba(136, 126, 124, 1) 0%, rgba(163, 153, 150, 0.82) 99%, rgba(163, 153, 150, 0.82) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    margin-left: auto;
+    margin-right: auto;
+    width: 1170px;
+}
+.navbar {
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0;
+    border: none;
+     min-height: 46px;
+     background: #f2f2f2;
+}
+
+.navbar .nav > li {
+    border-bottom: 5px solid transparent;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-left: 0;
+    text-transform: uppercase;
+    float: left;
+}
+
+ul.nav ul > li {
+    text-transform: none;
+}
+
+.navbar .nav > li:hover {
+    border-bottom: 5px solid #cb3b59;
+    background-color: none;
+}
+
+.navbar .nav > li > a {
+    color: white;
+    padding: 10px 10px 11px;
+    text-shadow: none;
+}
+.navbar .nav > li > a:hover {
+    color: #fff;
+    background-color: transparent;
+}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+    background-color: transparent;
+    color: #887e7c;
+}
+.navbar .nav > li > .dropdown-menu::after, .navbar .nav > li > .dropdown-menu::before {
+    border: medium none;
+}
+.active-trail, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover {
+    color: #cb3b59;
+    font-weight: 700;
+}
+
+.navbar .dropdown-menu li a:hover {
+    color: black;
+}
+.navbar .dropdown-menu li a.active-trail:hover {
+    color: inherit;
+}
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: inherit;
+    color: white;
+}
+.navbar .nav li.dropdown > .dropdown-toggle .caret {
+    border-bottom-color: #fff;
+    border-top-color: #fff;
+}
+.navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.active > .dropdown-toggle .caret, .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret, .navbar .nav li.dropdown > a:hover .caret, .navbar .nav li.dropdown > a:focus .caret, .caret {
+    border-bottom-color: #fff;
+    border-top-color: #fff;
+}
+.dropdown-menu .sub-menu {
+    left: 100%;
+    margin-top: -1px;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+}
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
+    margin-top: 5px;
+}
+.navbar .dropdown-menu {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+}
+.navbar .block-menu-block {
+    float: left;
+    width: 850px;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.navbar .menu .dropdown-menu li a:hover::before {
+    content: "» ";
+}
+.clearfix::after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+/* FIL D'ARIANE */
+
+#block-block-6{
+    text-transform: capitalize;
+    padding-right: 25px;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    float: left;
+    font-size: 11px;
+    margin-bottom: 10px;
+    padding: 0;
+
+}
+
+.breadcrumb:first-child {
+    background-image: url("images/arrow_state_grey_right.png");
+    background-position: -1px center;
+    background-repeat: no-repeat;
+    padding-left: 15px;
+}
+
+.breadcrumb li:last-child{
+    color: #cb3b59;
+    font-weight: 700;
+}
+
+.currentdate {
+    font-size: 11px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.breadcrumb a {
+    color: #897e78;
+    font-weight: 400;
+    line-height: 21px;
+}
+
+.breadcrumb a:hover{
+	text-decoration: none;
+}
+
+.breadcrumb > li + li::before {
+    content: none;
+}
+
+.breadcrumb > li > .divider {
+    color: #ccc;
+    padding: 0 3px;
+}
+
+/* LOGO */
+
+#logo-partenaire{
+	margin-top: 20px;
+}
+
+/* ERREUR */
+
+#error-h2{
+    padding-left: 10px;
+}
+
+/* PARTIE OCCURRENCE */
+/* TITRE */
+
+#searchHeader{
+    border-bottom: 4px solid #cc424e;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    font-size: 1.5em;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.2em;
+    margin-top: 0;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+/* RECHERCHE OCCURRENCES */
+
+
+#searchTabs> li.active > a,
+#searchTabs > li > a{
+    color: #a6ac1a;
+}
+
+.title-tab{
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+#content{
+    margin-top: 25px;
+}
+
+/* RECHERCHE OCCURRENCES - TAB RECHERCHE SIMPLE*/
+
+.form-control{
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.42857;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px; 
+}
+
+.search-occurrence{
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    height: 46px;
+    line-height: 1.42857;
+    background-color: rgba(136, 126, 124, 1);
+    background-image: none;
+    border: 1px solid rgba(136, 126, 124, 1);
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+.search-occurrence:hover {
+    background-color: rgba(136, 126, 124, 1);
+    border: 1px solid rgba(136, 126, 124, 1); 
+    color: white;
+}
+
+.controls{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 35px;
+}
+
+/* RECHERCHE OCCURRENCES - TAB RECHERCHE AVANCE*/
+
+#solrQuery{
+    position:absolute;
+    left:-9999px;
+}
+
+.advancesearchTitle{
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: rgba(51, 51, 51);
+}
+
+.labels{
+    color: rgba(51, 51, 51);
+}
+
+.advanced-search-occurrence{
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    background-color: rgba(136, 126, 124, 1);
+    background-image: none;
+    border: 1px solid rgba(136, 126, 124, 1);
+    color: white;
+}
+
+/* RECHERCHE OCCURRENCE : PAGE RESULTAT */
+
+#solrSubmit {
+    border: 1px solid rgba(136, 126, 124, 1);
+    background-color: rgba(136, 126, 124, 1);
+    background-image: none;
+    border: 1px solid rgba(136, 126, 124, 1);
+    color: white;
+}
+
+#content2{
+    margin-right: 0;
+}
+
+#facetWell .caret {
+    margin-top: 0;
+}
+
+/* RECHERCHE OCCURRENCE : PAGE RÉSULTAT - TAB MAP */
+
+#downloadMaps {
+    margin-bottom: 2px;
+}
+
+#submitDownloadMap {
+    float:left;
+}
+
+/* RECHERCHE OCCURRENCE : PAGE RÉSULTAT - TAB CHAR */
+
+ #charts div { 
+    display: inline-flex; 
+    padding-left:20px; 
+}
+
+/* PAGE OCCURRENCE */
+
+#recordTitle {
+    border-bottom: 4px solid #cc424e;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    font-size: 19.5px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.2em;
+    margin-top: 0;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+#classification h2{
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.2em;
+    margin-top: 5px;
+    padding: 5px;
+    text-transform: capitalize;
+}
+/* FOOTER */
+
+footer{
+    left: 0;
+    line-height: 8px;
+    bottom: 0;
+    width: 1170px;
+    color: #FFFFFF;
+    font-size: 12px;
+    z-index: 1000;
+    padding-top: 5px; 
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 0px solid #887E7C;
+    padding-bottom: 5px; 
+    margin-left: auto;
+    margin-right: auto; 
+    padding: 0;
+
+    text-align: center;
+    background-color:#887E7C;
+    background: -moz-linear-gradient(top, rgba(136,126,124,1) 0%, rgba(163,153,150,0.82) 99%, rgba(163,153,150,0.82) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(136,126,124,1)), color-stop(99%,rgba(163,153,150,0.82)), color-stop(100%,rgba(163,153,150,0.82)))$
+    background: -webkit-linear-gradient(top, rgba(136,126,124,1) 0%,rgba(163,153,150,0.82) 99%,rgba(163,153,150,0.82) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(136,126,124,1) 0%,rgba(163,153,150,0.82) 99%,rgba(163,153,150,0.82) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(136,126,124,1) 0%,rgba(163,153,150,0.82) 99%,rgba(163,153,150,0.82) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(136,126,124,1) 0%,rgba(163,153,150,0.82) 99%,rgba(163,153,150,0.82) 100%); /* W3C */ 
+     position: relative;
+    clear:both;
+    height: 79px
+}
+
+footer ul {
+    margin:0px;
+}
+
+footer img {
+    margin-left:3px;
+}
+
+footer ul li{
+    display: inline-block;
+    list-style: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#footer-link li{
+    margin: 4 5 4 5;
+}
+
+#footer-link li{
+    margin: 4 5 4 5;
+}
+
+#footer-link li a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.footer-margin{
+	margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.social{
+	padding-top: 10px;
+}
 
 #main-content #customiseFacetsButton > .dropdown-menu,
 #main-content #resultsReturned .dropdown-menu {
     background-color: #fff;
+}
+
+    #breadcrumb {
+        margin-top: 10px;
+    }
+    #main-content #searchInfoRow #customiseFacetsButton > .dropdown-menu {
+        background-color: #ffffff;
+    }
+
+
+.black {
+    border-bottom-color: #000;
+    border-top-color: #000;
+    color: #000;
 }

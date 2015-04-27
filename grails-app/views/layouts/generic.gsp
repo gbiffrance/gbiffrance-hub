@@ -68,7 +68,7 @@
             });
 
             // Mobile/desktop toggle
-            // TODO: set a cookie so user's choice is remembered across pages
+            // TODO: set a cookie so user''s choice is remembered across pages
             var responsiveCssFile = $("#responsiveCss").attr("href"); // remember set href
             $(".toggleResponsive").click(function(e) {
                 e.preventDefault();
