@@ -58,6 +58,7 @@
     %{-- Entête de la page résultat  --}%
     <div id="listHeader" class="row">
         <div class="col-xs-7 col-md-5">
+            <br/>
             <h1><alatag:message code="search.heading.list" default="Recherche par occurrences : Résultat"/><a name="resultsTop">&nbsp;</a></h1>
         </div>
         <div class="col-xs-5 col-md-3"></div>
@@ -120,10 +121,10 @@
             <!-- facet column -->
             <div class="col-md-3">
                 <div id="customiseFacetsButton" class="btn-group">
-                     <a class="btn btn-small dropdown-toggle tooltips" href="#" data-toggle="dropdown" data-hasqtip="2" oldtitle="Personnaliser les filtres" title="" aria-describedby="qtip-2">
+                     <a class="btn btn-small dropdown-toggle tooltips" href="#" data-toggle="dropdown" data-hasqtip="2" oldtitle="Personnaliser les filtres" title="" aria-describedby="qtip-2" id="perso-btn">
                         <i class="fa fa-cog"></i>
                         <g:message code="list.customisefacetsbutton.title" default="Personnaliser les filtres"/>
-                        <span class="caret black"></span>
+                        <span class="caret"></span>
                     </a>
 
                      %{-- Menu déroulant du bouton Personnalisé les filtres --}%

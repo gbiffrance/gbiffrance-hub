@@ -155,7 +155,7 @@
 
 <div class="${fluidLayout?'container-fluid':'container'}" id="main-content">
     <div class="content">
-        <div class="row" id="breadcb">
+        <div class="row">
             <div class="block-breadcrumb col-sm-12 col-md-8">
                 <ul class="breadcrumb">
                     <li>
@@ -189,7 +189,7 @@
         </div>
     </div>
     <g:layoutBody />
-    <div class="row-fluid">
+    <div class="row-fluid" id="breadcb">
         <div class="col-md-3 vcenter">
             <div>   <a href="http://www.ala.org.au/" target="_blank">
                 <img src="/generic-hub/images/ala-white.png" class="img-responsive center-block" alt="Atlas of Living Australia">

@@ -356,6 +356,24 @@ ul.nav ul > li {
     margin-top: 0;
 }
 
+#perso-btn{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgba(136, 126, 124, 1);
+    background-image: none;
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    color: white !important;
+    margin-top: 10px;
+}
+
+#perso-btn i {
+    padding-right: 3px
+}
+
+#perso-btn .caret {
+    margin-left: 3px;
+}
 /* RECHERCHE OCCURRENCE : PAGE RÉSULTAT - TAB MAP */
 
 #downloadMaps {
@@ -384,6 +402,22 @@ ul.nav ul > li {
     line-height: 1.2em;
     margin-top: 0;
     padding: 5px;
+    text-transform: uppercase;
+}
+
+#listHeader {
+    border-bottom: 4px solid #cc424e !important;
+    margin:0;
+}
+
+#listHeader h1 {
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    font-size: 19.5px !important;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.2em;
+    margin-top: 0 !important;
+    padding: 5px !important;
     text-transform: uppercase;
 }
 
