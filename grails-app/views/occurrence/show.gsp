@@ -151,13 +151,13 @@
 
 </head>
 <body>
-    %{--<g:set var="json" value="${request.contextPath}/occurrences/${record?.raw?.uuid}.json" />--}%
+    <g:set var="json" value="${request.contextPath}/occurrences/${record?.raw?.uuid}.json" />
     <g:if test="${record}">
         <g:if test="${record.raw}">
             <div id="headingBar" class="recordHeader">
                 <h1 id="recordTitle"><g:message code="show.headingbar01.title" default="Enregistrement d'occurrence "/> : 
                     <span id="recordId">${recordId}</span></h1>
-                <div id="jsonLink">
+                %{-- <div id="jsonLink">
                     <g:if test="${isCollectionAdmin}">
                         <g:set var="admin" value=" - admin"/>
                     </g:if>
@@ -168,9 +168,9 @@
                         <div id="clubView"><g:message code="show.clubview.message" default="Showing &quot;Club View&quot;"/></div>
                     </g:if>
                     <!-- <a href="${json}">JSON</a> -->
-                </div>
+                </div> --}%
                 <div id="backBtn" class="pull-right">
-                    <a href="#" title="Return to search results" class="btn"><g:message code="show.backbtn.navigator" default="Back to search results"/></a>
+                    <a href="#" title="Return to search results" class="btn" id="back-btn"><g:message code="show.backbtn.navigator" default="Back to search results"/></a>
                 </div>
                 <div id="classification">
                     <g:if test="${record.raw.classification}">
@@ -294,7 +294,7 @@
                 <ul id="userAnnotationsList" style="list-style: none; margin:0;"></ul>
             </div>
             <div id="dataQuality" class="additionalData"><a name="dataQualityReport"></a>
-                <h2><g:message code="show.dataquality.title" default="Data quality tests"/></h2>
+                <h2 class="admin-h2"><g:message code="show.dataquality.title" default="Data quality tests"/></h2>
                 <div id="dataQualityModal" class="modal hide fade" tabindex="-1" role="dialog">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">×</button>
@@ -550,7 +550,7 @@
 					</g:if>
 					</p>
 				</g:if>
-			</div>
+
 
                 <div id="outlierInformation" class="additionalData">
                     <g:if test="${contextualSampleInfo}">
@@ -596,28 +596,32 @@
                 </div>
             </div>
 
-            <div id="processedVsRawView" class="modal hide " tabindex="-1" role="dialog" aria-labelledby="processedVsRawViewLabel" aria-hidden="true"><!-- BS modal div -->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="processedVsRawViewLabel"><g:message code="show.processedvsrawview.title" default="&quot;Original versus Processed&quot; Comparison Table"/></h3>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-bordered table-striped table-condensed">
-                        <thead>
-                        <tr>
-                            <th style="width:15%;"><g:message code="show.processedvsrawview.table.th01" default="Group"/></th>
-                            <th style="width:15%;"><g:message code="show.processedvsrawview.table.th02" default="Field Name"/></th>
-                            <th style="width:35%;"><g:message code="show.processedvsrawview.table.th03" default="Original Value"/></th>
-                            <th style="width:35%;"><g:message code="show.processedvsrawview.table.th04" default="Processed Value"/></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <alatag:formatRawVsProcessed map="${compareRecord}"/>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-small" data-dismiss="modal" aria-hidden="true" style="float:right;"><g:message code="show.processedvsrawview.button.close" default="Close"/></button>
+            <div id="processedVsRawView" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="processedVsRawViewLabel" aria-hidden="true"><!-- BS modal div -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="processedVsRawViewLabel"><g:message code="show.processedvsrawview.title" default="&quot;Original versus Processed&quot; Comparison Table"/></h3>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-bordered table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th style="width:15%;"><g:message code="show.processedvsrawview.table.th01" default="Group"/></th>
+                                        <th style="width:15%;"><g:message code="show.processedvsrawview.table.th02" default="Field Name"/></th>
+                                        <th style="width:35%;"><g:message code="show.processedvsrawview.table.th03" default="Original Value"/></th>
+                                        <th style="width:35%;"><g:message code="show.processedvsrawview.table.th04" default="Processed Value"/></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <alatag:formatRawVsProcessed map="${compareRecord}"/>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-small" data-dismiss="modal" aria-hidden="true" style="float:right;"><g:message code="show.processedvsrawview.button.close" default="Close"/></button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -673,5 +677,6 @@
     <g:else>
         <h3><g:message code="show.body.error.title" default="An error occurred"/> <br/>${flash.message}</h3>
     </g:else>
+
 </body>
 </html>

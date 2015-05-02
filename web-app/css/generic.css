@@ -19,6 +19,9 @@ body{
     clear:left
 }
 
+.caret{
+    padding-bottom: 2px;
+}
 
 
 /* HEADER */
@@ -165,6 +168,10 @@ ul.nav ul > li {
 }
 
 /* FIL D'ARIANE */
+
+#breadcb{
+    margin-top: 10px;
+}
 
 #block-block-6{
     text-transform: capitalize;
@@ -390,7 +397,90 @@ ul.nav ul > li {
     padding: 5px;
     text-transform: capitalize;
 }
+
+/* PAGE RESULTAT UNE OCC */
+div .recordHeader{
+    border-bottom:none;
+}
+
+#SidebarBoxZ{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#back-btn, #showRawProcessed{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgba(136, 126, 124, 1);
+    background-image: none;
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    color: white;
+    margin-top: 10px;
+}
+#showRawProcessed{
+    width: 100%;
+}
+
+.badge{
+    background-color: rgba(136, 126, 124, 1);
+}
+
+.public-h3{
+    color: #a6ac1a;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+
+#systemAssertionsContainer ul li {
+    padding: 5px 15px 5px 0px;
+    border:none;
+}
 /* FOOTER */
+
+.quality-test{
+    color: #a6ac1a;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.sidebar h3 {
+    font-size: 105%;
+}
+.admin-h2 {
+    border-bottom: 1px dotted #a6ac1a;
+    color: #a6ac1a;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+#showRawProcessed{
+    margin-bottom: 0;
+}
+
+#history_stat {
+    margin-bottom:5px;
+}
+#occurrenceDataset h2{
+    margin-top: 0;
+}
+
+.modal-dialog {
+    width: 1000px;
+}
 
 footer{
     left: 0;
@@ -456,7 +546,6 @@ footer ul li{
 
 .footer-margin{
 	margin-bottom: 5px;
-    margin-top: 10px;
 }
 
 .social{

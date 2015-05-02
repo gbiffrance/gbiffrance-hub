@@ -7,29 +7,34 @@
 <g:if test="${record.processed.attribution.provenance != 'Draft'}">
     <div class="sidebar">
         <div id="warnings">
-
             <div id="systemAssertionsContainer" <g:if test="${!record.systemAssertions}">style="display:none"</g:if>>
-                <h3><g:message code="show.systemassertioncontainer.title" default="Data quality tests"/></h3>
+                <h3 class="quality-test">
+                    <g:message code="show.systemassertioncontainer.title" default="Data quality tests"/>
+                </h3>
+                <ul class="list-group">
+                    <li class="failedTestCount list-group-item">
+                        <g:message code="assertions.failed" default="failed"/> 
+                        <span class="badge">${record.systemAssertions.failed?.size()?:0}</span>
+                    </li>
+                    <li class="warningsTestCount list-group-item">
+                        <g:message code="assertions.warnings" default="warnings"/> 
+                        <span class="badge">${record.systemAssertions.warning?.size()?:0}</span>
+                    </li>
+                    <li class="passedTestCount list-group-item">
+                        <g:message code="assertions.passed" default="passed"/> 
+                        <span class="badge">${record.systemAssertions.passed?.size()?:0}</span>
+                    </li>
+                    <li class="missingTestCount list-group-item">
+                        <g:message code="assertions.missing" default="missing"/> 
+                        <span class="badge">${record.systemAssertions.missing?.size()?:0}</span>
+                    </li>
+                    <li class="uncheckedTestCount list-group-item">
+                        <g:message code="assertions.unchecked" default="unchecked"/> 
+                        <span class="badge">${record.systemAssertions.unchecked?.size()?:0}</span>
+                    </li>
 
-                <ul id="systemAssertions">
-                    <li class="failedTestCount">
-                        <g:message code="assertions.failed" default="failed"/>: ${record.systemAssertions.failed?.size()?:0}
-                    </li>
-                    <li class="warningsTestCount">
-                        <g:message code="assertions.warnings" default="warnings"/>: ${record.systemAssertions.warning?.size()?:0}
-                    </li>
-                    <li class="passedTestCount">
-                        <g:message code="assertions.passed" default="passed"/>: ${record.systemAssertions.passed?.size()?:0}
-                    </li>
-                    <li class="missingTestCount">
-                        <g:message code="assertions.missing" default="missing"/>: ${record.systemAssertions.missing?.size()?:0}
-                    </li>
-                    <li class="uncheckedTestCount">
-                        <g:message code="assertions.unchecked" default="unchecked"/>: ${record.systemAssertions.unchecked?.size()?:0}
-                    </li>
-
-                    <li id="dataQualityFurtherDetails">
-                        <i class="icon-hand-right"></i>&nbsp;
+                    <li id="dataQualityFurtherDetails" class="list-group-item" >
+                        <i class="glyphicon glyphicon-hand-right"></i>&nbsp;
                         <a id="dataQualityReportLink" href="#dataQualityReport">
                             <g:message code="show.dataqualityreportlink.navigator" default="View full data quality report"/>
                         </a>
@@ -202,7 +207,7 @@
 <div class="sidebar">
     <button href="#processedVsRawView" class="btn" id="showRawProcessed" role="button" data-toggle="modal"
             title="Table showing both original and processed record values">
-        <span id="processedVsRawViewSpan" href="#processedVsRawView" title=""><i class="icon-th"></i> <g:message code="show.sidebar02.showrawprocessed.span" default="Original vs Processed"/></span>
+        <span id="processedVsRawViewSpan" href="#processedVsRawView" title=""><i class="glyphicon glyphicon-th"></i> <g:message code="show.sidebar02.showrawprocessed.span" default="Original vs Processed"/></span>
     </button>
 </div>
 <g:if test="${record.images}">
@@ -326,7 +331,7 @@
     <div class="sidebar" style="margin-top: 10px;font-size: 12px; color: #555;">
         <g:set var="rawLastModifiedString" value="${record.raw.lastModifiedTime.substring(0,10)}"/>
         <g:set var="processedLastModifiedString" value="${record.processed.lastModifiedTime.substring(0,10)}"/>
-        <p style="margin-bottom:20px;">
+        <p id="history_stat">
             <g:message code="show.sidebar05.p01" default="Date loaded"/>: ${rawLastModifiedString}<br/>
             <g:message code="show.sidebar05.p02" default="Date last processed"/>: ${processedLastModifiedString}<br/>
         </p>

@@ -98,13 +98,14 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="http://www.gbif.fr/atlas-of-living-france">
-                            consulter
+                        <a href="http://185.26.127.140">
+                            consulter                            
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="http://www.gbif.fr/atlas-of-living-france">Acc&egraves au portail fran&ccedilais du GBIF</a></li>
+                            <li><a href="http://185.26.127.140">Acc&egraves au portail fran&ccedilais du GBIF</a></li>
                             <li><a href="http://www.gbif.fr/page/consult/acces-aux-donnees-et-metadonnees">Acc&egraves au portail international du GBIF</a></li>
+                            <li><a href="http://185.26.127.140/collectory/admin">Acc&egraves à l'administration du portail français du GBIF</a></li>
                         </ul>   
                     </li>
 
@@ -154,7 +155,7 @@
 
 <div class="${fluidLayout?'container-fluid':'container'}" id="main-content">
     <div class="content">
-        <div class="row">
+        <div class="row" id="breadcb">
             <div class="block-breadcrumb col-sm-12 col-md-8">
                 <ul class="breadcrumb">
                     <li>
@@ -166,7 +167,7 @@
                         <span class="divider">/</span>
                     </li>
                     <li>
-                        <a href="http://www.gbif.fr/page/consult/acces-aux-donnees-et-metadonnees">Portail Atlas of Living France</a>
+                        <a href="http://185.26.127.140">Portail Atlas of Living France</a>
                         <span class="divider">/</span>
                     </li>
                     <li>
@@ -188,23 +189,23 @@
         </div>
     </div>
     <g:layoutBody />
-    <div class="row vertical-align" id="logo-partenaire">
-        <div class="col-md-3">
+    <div class="row-fluid">
+        <div class="col-md-3 vcenter">
             <div>   <a href="http://www.ala.org.au/" target="_blank">
                 <img src="/generic-hub/images/ala-white.png" class="img-responsive center-block" alt="Atlas of Living Australia">
             </a> </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 vcenter">
             <a href="https://crowdin.com/" target="_blank">
                 <img src="/generic-hub/images/crowdin-white.png" class="img-responsive center-block" alt="Crowdin">
             </a>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 vcenter">
             <a href="http://www.gbif.org/" target="_blank">
                 <img src="/generic-hub/images/logo-gbif.jpg" class="img-responsive center-block" alt="GBIF">
             </a>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 vcenter">
             <a href="http://www.gbif.fr/" target="_blank">
                 <img src="/generic-hub/images/gbif-fr.png" class="img-responsive center-block" alt="GBIF France">
             </a>

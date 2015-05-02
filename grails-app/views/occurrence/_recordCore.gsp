@@ -3,7 +3,7 @@
 <%-- g:set target="${fieldsMap}" property="aKey" value="value for a key" /--%>
 <g:set var="fieldsMap" value="${[:]}"/>
 <div id="occurrenceDataset">
-<h3><g:message code="recordcore.oc.title" default="Dataset"/></h3>
+<h2 class="admin-h2"><g:message code="recordcore.oc.title" default="Dataset"/></h3>
 <table class="occurrenceTable table table-bordered table-striped table-condensed" id="datasetTable">
 <!-- Data Provider -->
     <alatag:occurrenceTableRow annotate="false" section="dataset" fieldCode="dataProvider" fieldName="Data provider">
@@ -357,7 +357,7 @@
 </table>
 </div>
 <div id="occurrenceTaxonomy">
-<h3><g:message code="recordcore.occurencetaxonomy.title" default="Taxonomy"/></h3>
+<h2 class="admin-h2"><g:message code="recordcore.occurencetaxonomy.title" default="Taxonomy"/></h2>
 <table class="occurrenceTable table table-bordered table-striped table-condensed" id="taxonomyTable">
 <!-- Higher classification -->
 <alatag:occurrenceTableRow annotate="true" section="dataset" fieldCode="higherClassification" fieldName="Higher classification">
@@ -868,7 +868,7 @@
 </g:if>
 <g:if test="${record.raw.miscProperties}">
     <div id="additionalProperties">
-        <h3><g:message code="recordcore.div.addtionalproperties.title" default="Additional properties"/></h3>
+        <h2 class="admin-h2"><g:message code="recordcore.div.addtionalproperties.title" default="Additional properties"/></h2>
         <table class="occurrenceTable table table-bordered table-striped table-condensed" id="miscellaneousPropertiesTable">
             <!-- Higher Geography -->
             <g:each in="${record.raw.miscProperties.sort()}" var="entry">
