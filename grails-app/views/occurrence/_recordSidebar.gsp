@@ -153,10 +153,10 @@
 </g:if>
 <g:if test="${isUnderCas && !isReadOnly && record.processed.attribution.provenance != 'Draft'}">
     <div class="sidebar">
-        <button class="btn" id="assertionButton" href="#loginOrFlag" role="button" data-toggle="modal" title="report a problem or suggest a correction for this record">
+        %{-- <button class="btn" id="assertionButton" href="#loginOrFlag" role="button" data-toggle="modal" title="report a problem or suggest a correction for this record">
             <span id="loginOrFlagSpan" title="Flag an issue" class=""><i class="icon-flag"></i> <g:message code="show.button.assertionbutton.span" default="Flag an issue"/></span>
-        </button>
-        <div id="loginOrFlag" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="loginOrFlagLabel" aria-hidden="true"><!-- BS modal div -->
+         </button> 
+        <div id="loginOrFlag" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="loginOrFlagLabel" aria-hidden="true"> --}% <!-- BS modal div -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="loginOrFlagLabel"><g:message code="show.loginorflag.title" default="Flag an issue"/></h3>

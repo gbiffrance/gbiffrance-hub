@@ -425,7 +425,7 @@
                                 <g:message code="search.map.helpText" default="Select one of the draw tools (polygon, rectangle, circle), draw a shape and click the search link that pops up."/>
                             </div>
                             <br>
-                            <div class="accordion accordion-caret" id="accordion2">
+                           %{--  <div class="accordion accordion-caret" id="accordion2">
                                 <div class="accordion-group">
                                     <div class="accordion-heading">
                                         <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
@@ -443,7 +443,7 @@
                                     </div>
                                 </div>
                             </div>
-
+ --}%
                         </div>
                         <div class="col-md-9">
                             <div id="leafletMap" style="height:600px;"></div>

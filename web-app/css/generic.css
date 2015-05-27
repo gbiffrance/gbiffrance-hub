@@ -329,7 +329,7 @@ ul.nav ul > li {
     color: rgba(51, 51, 51);
 }
 
-.advanced-search-occurrence{
+.advanced-search-occurrence, .advanced-search-occurrence:focus, .advanced-search-occurrence:hover{
     border: 1px solid rgba(136, 126, 124, 1);
     border-radius: 4px;
     background-color: rgba(136, 126, 124, 1);
@@ -346,6 +346,10 @@ ul.nav ul > li {
     background-image: none;
     border: 1px solid rgba(136, 126, 124, 1);
     color: white;
+}
+
+#institutionLogo{
+    margin-top:20px;
 }
 
 #content2{
