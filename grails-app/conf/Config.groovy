@@ -42,7 +42,7 @@ chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
 map.overlay.url = ""
 map.overlay.name = ""
-biocache.baseUrl="http://10.1.1.2/biocache-service"
+biocache.baseUrl="http://185.26.127.140/biocache-service"
 /******************************************************************************\
  *  MISC
 \******************************************************************************/
@@ -100,6 +100,7 @@ grails {
 }
  
 grails.converters.encoding = "UTF-8"
+grails.views.gsp.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
 
@@ -120,15 +121,15 @@ grails.hibernate.cache.queries = false
 
 environments {
     development {
-//        grails.serverURL = 'http://dev.ala..au:8080/' + appName
-//        serverName='http://dev.ala.org.au:8080'
+        grails.serverURL = 'http://localhost:8080/' + appName
+        serverName='http://localhost:8080/'
 //        security.cas.appServerName = serverName
 //        security.cas.contextPath = "/${appName}"
         grails.resources.debug = true // cache & resources plugins
     }
     test {
-//        grails.serverURL = 'http://biocache-test.ala.org.au'
-//        serverName='http://biocache-test.ala.org.au'
+       grails.serverURL = 'http://185.26.127.140/'        
+       serverName='http://185.26.127.140/'
 //        security.cas.appServerName = serverName
         //security.cas.contextPath = "/${appName}"
     }

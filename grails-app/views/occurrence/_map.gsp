@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <style type="text/css">
 
+.leaflet-bottom.leaflet-left .leaflet-control-coordinates{
+     margin-left: 20px;
+}
+    
 #leafletMap {
     cursor: pointer;
     font-size: 12px;
@@ -127,7 +131,8 @@ a.colour-by-legend-toggle {
     float: none;
 }
 #mapLayerControls td {
-    padding: 2px 5px 0px 5px;
+    padding: 2px 10px 0px 10px;
+    width: 27%;
 }
 #mapLayerControls label {
     padding-top: 4px;
@@ -144,10 +149,15 @@ a.colour-by-legend-toggle {
     margin-top: 0;
 }
 #outlineDots {
-    height: 20px;
+    /*height: 20px;*/
 }
 #recordLayerControl {
     padding: 0 5px;
+    width: 80%;
+}
+
+.label{
+    background-color: #999999;
 }
 
 </style>
@@ -210,14 +220,14 @@ a.colour-by-legend-toggle {
                 <div class="layerControls">
                     <span class="slider-val" id="sizeslider-val">4</span>
                 </div>
-                <div id="sizeslider" style="width:75px;"></div>
+                <div id="sizeslider" style="width:100px;"></div>
             </td>
             <td>
                 <label for="opacityslider"><g:message code="map.maplayercontrols.tr01td03.label" default="Transparance"/>:</label>
                 <div class="layerControls">
                     <span class="slider-val" id="opacityslider-val">0.8</span>
                 </div>
-                <div id="opacityslider" style="width:75px;"></div>
+                <div id="opacityslider" style="width:100px;"></div>
             </td>
             <td>
                 <label for="outlineDots"><g:message code="map.maplayercontrols.tr01td04.label" default="Contour"/>:</label>

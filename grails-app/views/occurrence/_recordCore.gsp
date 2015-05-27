@@ -1,6 +1,39 @@
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 %{--<% Map fieldsMap = new HashMap(); pageContext.setAttribute("fieldsMap", fieldsMap); %>--}%
 <%-- g:set target="${fieldsMap}" property="aKey" value="value for a key" /--%>
+
+<script type="text/javascript">
+        function getGBIFUrl(scientifiName, cb){
+          var xhr = new XMLHttpRequest();
+          var url = "http://api.gbif.org/v1/species/search?q="+scientifiName+"&datasetKey=d7dddbf4-2cf0-4f39-9b2a-bb099caae36c&limit=1";
+          xhr.open('GET', url);
+          xhr.addEventListener('readystatechange', function() {
+            if (xhr.readyState === 4) {
+                var response = JSON.parse(xhr.responseText);
+                taxonKey = response.results[0].key;
+                urlGBIF = "http://www.gbif.org/species/"+taxonKey;
+                cb(urlGBIF);
+            }
+          }, false);
+          xhr.send(null);
+        }
+
+        function getINPNUrl(scientifiName, cb){
+          var xhr = new XMLHttpRequest();
+          var url = "http://api.gbif.org/v1/species/search?q="+scientifiName+"&datasetKey=0e61f8fe-7d25-4f81-ada7-d970bbb2c6d6&limit=1";
+          xhr.open('GET', url);
+          xhr.addEventListener('readystatechange', function() {
+            if (xhr.readyState === 4) {
+                var response = JSON.parse(xhr.responseText);
+                taxonKey = response.results[0].taxonID;
+                urlINPN = "http://inpn.mnhn.fr/espece/cd_nom/"+taxonKey;
+                cb(urlINPN);
+            }
+          }, false);
+          xhr.send(null);
+        }
+</script>
+
 <g:set var="fieldsMap" value="${[:]}"/>
 <div id="occurrenceDataset">
 <h2 class="admin-h2"><g:message code="recordcore.oc.title" default="Dataset"/></h3>
@@ -357,7 +390,7 @@
 </table>
 </div>
 <div id="occurrenceTaxonomy">
-<h2 class="admin-h2"><g:message code="recordcore.occurencetaxonomy.title" default="Taxonomy"/></h2>
+<h2 class="admin-h2"><g:message code="recordcore.occurencetaxonomy.title" default="Taxonomie"/></h2>
 <table class="occurrenceTable table table-bordered table-striped table-condensed" id="taxonomyTable">
 <!-- Higher classification -->
 <alatag:occurrenceTableRow annotate="true" section="dataset" fieldCode="higherClassification" fieldName="Higher classification">
@@ -379,11 +412,23 @@
         </a>
     </g:if>
     <g:if test="${record.processed.classification.scientificName && record.raw.classification.scientificName && (record.processed.classification.scientificName.toLowerCase() != record.raw.classification.scientificName.toLowerCase())}">
-        <br/><span class="originalValue">Supplied scientific name "${record.raw.classification.scientificName}"</span>
+        <br/><span class="originalValue">Nom scientifique connu "${record.raw.classification.scientificName}"</span>
     </g:if>
     <g:if test="${!record.processed.classification.scientificName && record.raw.classification.scientificName}">
         ${record.raw.classification.scientificName}
     </g:if>
+    <br/>
+    <a target="_blank" href="" id="inpn-url">
+        <span class="originalValue">Accéder à la page espèce de l'INPN</span>
+    </a>
+    <script type="text/javascript">getINPNUrl('${record.raw.classification.scientificName}', function(url){$('#inpn-url').attr('href', url)});</script>
+
+    <br/>
+    <a target="_blank" href="" id="gbif-url">
+        <span class="originalValue">Accéder à la page espèce du GBIF (anglais)</span>
+    </a>
+    <script type="text/javascript">getGBIFUrl('${record.raw.classification.scientificName}', function(url){$('#gbif-url').attr('href', url)});</script>
+
 </alatag:occurrenceTableRow>
 <!-- original name usage -->
 <alatag:occurrenceTableRow annotate="true" section="taxonomy" fieldCode="originalNameUsage" fieldName="Original name">
@@ -632,7 +677,7 @@
 </div>
 <g:if test="${compareRecord?.Location}">
 <div id="geospatialTaxonomy">
-<h3><g:message code="recordcore.geospatialtaxonomy.title" default="Geospatial"/></h3>
+<h2 class="admin-h2"><g:message code="recordcore.geospatialtaxonomy.title" default="Geospatial"/></h2>
 <table class="occurrenceTable table table-bordered table-striped table-condensed" id="geospatialTable">
 <!-- Higher Geography -->
 <alatag:occurrenceTableRow annotate="true" section="geospatial" fieldCode="higherGeography" fieldName="Higher geography">
