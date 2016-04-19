@@ -283,7 +283,7 @@ ul.nav ul > li {
     border-top-left-radius: 4px; 
 }
 
-.search-occurrence{
+.search-occurrence, .search-occurrence:active{
     border: 1px solid rgba(136, 126, 124, 1);
     border-radius: 4px;
     height: 46px;
@@ -297,7 +297,7 @@ ul.nav ul > li {
     line-height: 1.5em;
 }
 
-.search-occurrence:hover {
+.search-occurrence:hover{
     background-color: rgba(136, 126, 124, 1);
     border: 1px solid rgba(136, 126, 124, 1); 
     color: white;
@@ -607,4 +607,15 @@ footer ul li{
     border-bottom-color: #000;
     border-top-color: #000;
     color: #000;
+}
+
+
+/* MODAL PAGE OCCURRENCE issues #12 Github */
+
+#processedVsRawView {
+    font-size: 13px;
+    text-align: center;
+    width: auto;
+    margin-left: 0px !important;
+
 }

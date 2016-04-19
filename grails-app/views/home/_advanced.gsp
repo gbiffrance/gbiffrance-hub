@@ -64,13 +64,13 @@
         <thead/>
         <tbody>
         <tr>
-            <td class="labels"><g:message code="advancedsearch.table05col01.title" default="Institution or Collection"/></td>
+            <td class="labels"><g:message code="advancedsearch.table05col01.title" default="Institution ou Collection"/></td>
             <td>
                 <select class="institution_uid collection_uid" name="institution_collection" id="institution_collection">
-                    <option value=""><g:message code="advancedsearch.table05col01.option01.label" default="-- select an institution or collection --"/></option>
+                    <option value=""><g:message code="advancedsearch.table05col01.option01.label" default="-- selectionner une institution ou une collection --"/></option>
                     <g:each var="inst" in="${request.getAttribute(FacetsName.INSTITUTION.fieldname)}">
                         <optgroup label="${inst.value}">
-                            <option value="${inst.key}"><g:message code="advancedsearch.table05col01.option02.label" default="All records from"/> ${inst.value}</option>
+                            <option value="${inst.key}"><g:message code="advancedsearch.table05col01.option02.label" default="Tous les enregistrement venant de"/> ${inst.value}</option>
                             <g:each var="coll" in="${request.getAttribute(FacetsName.COLLECTION.fieldname)}">
                                 <g:if test="${inst.key == 'in13' && StringUtils.startsWith(coll.value, inst.value)}">
                                     <option value="${coll.key}">${StringUtils.replace(StringUtils.replace(coll.value, inst.value, ""), " - " ,"")} <g:message code="advancedsearch.table05col01.option03.label" default="Collection"/></option>

@@ -5,8 +5,8 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-//grails.project.plugins.dir="plugins"
-//grails.project.war.file = "target/${appName}-${appVersion}.war"
+grails.project.plugins.dir="plugins"
+grails.project.war.file = "target/${appName}-${appVersion}.war"
 //grails.plugin.location.'biocache-hubs' = "../biocache-hubs"
 
 grails.project.fork = [
@@ -52,7 +52,7 @@ grails.project.dependency.resolution = {
         compile ":cache-headers:1.1.6"
         runtime ":resources:1.2.8"
         runtime ":cached-resources:1.0"
-        runtime ":biocache-hubs:0.62"
+        runtime ":biocache-hubs:0.75"
         compile ":jquery:1.11.1"
     }
 }

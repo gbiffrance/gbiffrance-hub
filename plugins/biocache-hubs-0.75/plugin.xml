@@ -1,0 +1,33 @@
+<plugin name='biocache-hubs' version='0.75' grailsVersion='2.3 &gt; *'>
+  <author>Nick dos Remedios</author>
+  <authorEmail>nick.dosremedios@csiro.au</authorEmail>
+  <title>Biocache Hubs Plugin</title>
+  <description>A Grails plugin to provide the core functionality for searching and displaying biodiversity data from
+biocache web services. Data access is via JSON REST web services
+from the ALA biocache-service app (no local DB is required for this app).
+</description>
+  <documentation>https://github.com/AtlasOfLivingAustralia/biocache-hubs</documentation>
+  <type>BiocacheHubsGrailsPlugin</type>
+  <resources>
+    <resource>BiocacheHubsResources</resource>
+    <resource>BiocacheHubsUrlMappings</resource>
+    <resource>BootStrap</resource>
+    <resource>defaultConfig</resource>
+    <resource>spring.resources</resource>
+    <resource>au.org.ala.biocache.hubs.AdminController</resource>
+    <resource>au.org.ala.biocache.hubs.AssertionsController</resource>
+    <resource>au.org.ala.biocache.hubs.DataQualityController</resource>
+    <resource>au.org.ala.biocache.hubs.HelpController</resource>
+    <resource>au.org.ala.biocache.hubs.HomeController</resource>
+    <resource>au.org.ala.biocache.hubs.MessagesController</resource>
+    <resource>au.org.ala.biocache.hubs.OccurrenceController</resource>
+    <resource>au.org.ala.biocache.hubs.ProxyController</resource>
+    <resource>au.org.ala.biocache.hubs.FacetsCacheService</resource>
+    <resource>au.org.ala.biocache.hubs.MessageSourceCacheService</resource>
+    <resource>au.org.ala.biocache.hubs.OutageService</resource>
+    <resource>au.org.ala.biocache.hubs.PostProcessingService</resource>
+    <resource>au.org.ala.biocache.hubs.UserService</resource>
+    <resource>au.org.ala.biocache.hubs.WebServicesService</resource>
+    <resource>au.org.ala.biocache.hubs.OccurrenceTagLib</resource>
+  </resources>
+</plugin>

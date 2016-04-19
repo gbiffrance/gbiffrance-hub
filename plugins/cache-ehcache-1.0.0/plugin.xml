@@ -1,0 +1,31 @@
+<plugin name='cache-ehcache' version='1.0.0' grailsVersion='2.0 &gt; *'>
+  <author>Burt Beckwith</author>
+  <authorEmail>beckwithb@vmware.com</authorEmail>
+  <title>Ehcache Cache Plugin</title>
+  <description>An Ehcache-based implementation of the Cache plugin</description>
+  <documentation>http://grails.org/plugin/cache-ehcache</documentation>
+  <type>CacheEhcacheGrailsPlugin</type>
+  <resources>
+    <resource>Order1500CacheConfig</resource>
+    <resource>Order500CacheConfig</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://plugins.grails.org' />
+    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
+    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
+    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
+  </repositories>
+  <dependencies>
+    <compile>
+      <dependency group='net.sf.ehcache' name='ehcache-core' version='2.4.6' />
+    </compile>
+  </dependencies>
+  <plugins>
+    <compile>
+      <plugin group='org.grails.plugins' name='cache' version='1.0.0' />
+    </compile>
+  </plugins>
+  <runtimePluginRequirements />
+  <behavior />
+</plugin>

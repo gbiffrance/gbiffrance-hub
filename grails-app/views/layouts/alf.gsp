@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <alatag:addApplicationMetaTags />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     %{--<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">--}%
@@ -65,7 +65,7 @@
 <body class="${pageProperty(name:'body.class')?:'nav-collections'}" id="${pageProperty(name:'body.id')}" onload="${pageProperty(name:'body.onload')}">
 <g:set var="fluidLayout" value="${grailsApplication.config.skin.fluidLayout?.toBoolean()}"/>
 <header class="${fluidLayout?'row-fluid':'container'}">
-            <a href="http://www.gbif.fr"><img src="/generic-hub/images/header_gbif_site.png" alt="GBIF France"></a>
+            <a href="http://www.gbif.fr"><img src="/images/header_gbif_site.png" alt="GBIF France"></a>
 </header>
 <div class="navbar navbar-inverse navbar-static ">
     <div class="navbar-inner ">
@@ -98,14 +98,14 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="http://185.26.127.140">
+                        <a href="http://portail.gbif.fr">
                             consulter                            
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="http://185.26.127.140">Acc&egraves au portail fran&ccedilais du GBIF</a></li>
+                            <li><a href="http://portail.gbif.fr">Acc&egraves au portail fran&ccedilais du GBIF</a></li>
                             <li><a href="http://www.gbif.fr/page/consult/acces-aux-donnees-et-metadonnees">Acc&egraves au portail international du GBIF</a></li>
-                            <li><a href="http://185.26.127.140/collectory/admin">Acc&egraves à l'administration du portail français du GBIF</a></li>
+                            <li><a href="http://metadonnee.gbif.fr/admin">Acc&egraves à l'administration du portail français du GBIF</a></li>
                         </ul>   
                     </li>
 
@@ -167,7 +167,7 @@
                         <span class="divider">/</span>
                     </li>
                     <li>
-                        <a href="http://185.26.127.140">Portail Atlas of Living France</a>
+                        <a href="http://portail.gbif.fr">Portail Atlas of Living France</a>
                         <span class="divider">/</span>
                     </li>
                     <li>
@@ -192,22 +192,22 @@
     <div class="row-fluid" id="breadcb">
         <div class="col-md-3 vcenter">
             <div>   <a href="http://www.ala.org.au/" target="_blank">
-                <img src="/generic-hub/images/ala-white.png" class="img-responsive center-block" alt="Atlas of Living Australia">
+                <img src="/images/ala-white.png" class="img-responsive center-block" alt="Atlas of Living Australia">
             </a> </div>
         </div>
         <div class="col-md-3 vcenter">
             <a href="https://crowdin.com/" target="_blank">
-                <img src="/generic-hub/images/crowdin-white.png" class="img-responsive center-block" alt="Crowdin">
+                <img src="/images/crowdin-white.png" class="img-responsive center-block" alt="Crowdin">
             </a>
         </div>
         <div class="col-md-3 vcenter">
             <a href="http://www.gbif.org/" target="_blank">
-                <img src="/generic-hub/images/logo-gbif.jpg" class="img-responsive center-block" alt="GBIF">
+                <img src="/images/logo-gbif.jpg" class="img-responsive center-block" alt="GBIF">
             </a>
         </div>
         <div class="col-md-3 vcenter">
             <a href="http://www.gbif.fr/" target="_blank">
-                <img src="/generic-hub/images/gbif-fr.png" class="img-responsive center-block" alt="GBIF France">
+                <img src="/images/gbif-fr.png" class="img-responsive center-block" alt="GBIF France">
             </a>
         </div>
     </div>
@@ -219,17 +219,17 @@
         <ul>
             <li>
                 <a target="_blank" href="http://twitter.com/gbiffrance" title="Rejoignez sous sur Twitter !">
-                    <img width="16" height="16" src="/generic-hub/images/twitter.png" alt="twitter logo">
+                    <img width="16" height="16" src="/images/twitter.png" alt="twitter logo">
                 </a>
             </li>
             <li>
                 <a target="_blank" href="/news.xml" title="Suivez notre actualité (Flux RSS)">
-                    <img width="16" height="16" src="/generic-hub/images/rss.png" alt="RSS logo">
+                    <img width="16" height="16" src="/images/rss.png" alt="RSS logo">
                 </a>
             </li>
             <li>
                 <a target="_blank" title="Page Facebook du GBIF" href="https://www.facebook.com/gbifnews">
-                    <img width="16" height="16" src="/generic-hub/images/facebook.png" alt="Facebook logo">
+                    <img width="16" height="16" src="/images/facebook.png" alt="Facebook logo">
                 </a> 
             </li>
         </ul>

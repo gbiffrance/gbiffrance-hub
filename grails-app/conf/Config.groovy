@@ -35,14 +35,14 @@ skin.orgNameLong = "Atlas of Living France"
 skin.orgNameShort = "Occurrences"
 // whether crumb trail should include a home link that is external to this webabpp - ala.baseUrl is used if true
 skin.includeBaseUrl = true
-skin.headerUrl = "classpath:resources/generic-header.jsp" // can be external URL
-skin.footerUrl = "classpath:resources/generic-footer.jsp" // can be external URL
+//skin.headerUrl = "classpath:resources/generic-header.jsp" // can be external URL
+//skin.footerUrl = "classpath:resources/generic-footer.jsp" // can be external URL
 skin.fluidLayout = true // true or false
 chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
 map.overlay.url = ""
 map.overlay.name = ""
-biocache.baseUrl="http://185.26.127.140/biocache-service"
+biocache.baseUrl="http://recherche-ws.gbif.fr"
 /******************************************************************************\
  *  MISC
 \******************************************************************************/
@@ -128,8 +128,10 @@ environments {
         grails.resources.debug = true // cache & resources plugins
     }
     test {
-       grails.serverURL = 'http://185.26.127.140/'        
-       serverName='http://185.26.127.140/'
+//        grails.serverURL = 'http://localhost:8080/' + appName
+//        serverName='http://localhost:8080/'
+          grails.serverURL = 'http://recherche.gbif.fr/'
+          serverName='http://recherche.gbif.fr/'
 //        security.cas.appServerName = serverName
         //security.cas.contextPath = "/${appName}"
     }
@@ -191,3 +193,6 @@ log4j = {
 exploreYourArea.lat = "2.4"
 exploreYourArea.lng = "46.6"
 exploreYourArea.location = "Saulzais-le-Potier"
+map.mapbox.id = "nickdos.kf2g7gpb" // http://mapbox.com/ Registered by Nick - free to use so anyone can create a new one and add it here
+map.mapbox.token = "pk.eyJ1Ijoibmlja2RvcyIsImEiOiJ2V2dBdEg0In0.Ep2VyMOaOUnOwN1ZVa9uyQ"
+collections.baseUrl="http://metadonnee.gbif.fr"

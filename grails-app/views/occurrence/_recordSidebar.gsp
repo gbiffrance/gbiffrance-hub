@@ -34,7 +34,7 @@
                     </li>
 
                     <li id="dataQualityFurtherDetails" class="list-group-item" >
-                        <i class="glyphicon glyphicon-hand-right"></i>&nbsp;
+                        <i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>&nbsp;
                         <a id="dataQualityReportLink" href="#dataQualityReport">
                             <g:message code="show.dataqualityreportlink.navigator" default="View full data quality report"/>
                         </a>
@@ -139,7 +139,7 @@
         </div>
     </div>
 </g:if>
-<g:if test="${record.processed.attribution.provenance && record.processed.attribution.provenance == 'Draft'}">
+%{-- <g:if test="${record.processed.attribution.provenance && record.processed.attribution.provenance == 'Draft'}">
     <div class="sidebar">
         <p class="grey-bg" style="padding:5px; margin-top:15px; margin-bottom:10px;">
             <g:message code="show.sidebar01.p" default="This record was transcribed from the label by an online volunteer. It has not yet been validated by the owner institution"/>
@@ -150,13 +150,13 @@
             <span id="viewDraftSpan" title="View Draft"><g:message code="show.button.viewdraftbutton.span" default="See draft in Biodiversity Volunteer Portal"/></span>
         </button>
     </div>
-</g:if>
-<g:if test="${isUnderCas && !isReadOnly && record.processed.attribution.provenance != 'Draft'}">
+</g:if> --}%
+%{-- <g:if test="${isUnderCas && !isReadOnly && record.processed.attribution.provenance != 'Draft'}">
     <div class="sidebar">
         %{-- <button class="btn" id="assertionButton" href="#loginOrFlag" role="button" data-toggle="modal" title="report a problem or suggest a correction for this record">
             <span id="loginOrFlagSpan" title="Flag an issue" class=""><i class="icon-flag"></i> <g:message code="show.button.assertionbutton.span" default="Flag an issue"/></span>
          </button> 
-        <div id="loginOrFlag" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="loginOrFlagLabel" aria-hidden="true"> --}% <!-- BS modal div -->
+        <div id="loginOrFlag" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="loginOrFlagLabel" aria-hidden="true">  <!-- BS modal div -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="loginOrFlagLabel"><g:message code="show.loginorflag.title" default="Flag an issue"/></h3>
@@ -191,7 +191,7 @@
                             </p>
                             <p id="assertionSubmitProgress" style="display:none;">
                                 <img src="${request.contextPath}/static/images/indicator.gif"/>
-                                %{--<img src="${g.createLink(uri:'/images/indicator.gif', plugin:'biocache-hubs')}"/>--}%
+                                %{--<img src="${g.createLink(uri:'/images/indicator.gif', plugin:'biocache-hubs')}"/>
                             </p>
 
                         </form>
@@ -203,11 +203,11 @@
             </div>
         </div>
     </div>
-</g:if>
+</g:if> --}%
 <div class="sidebar">
     <button href="#processedVsRawView" class="btn" id="showRawProcessed" role="button" data-toggle="modal"
             title="Table showing both original and processed record values">
-        <span id="processedVsRawViewSpan" href="#processedVsRawView" title=""><i class="glyphicon glyphicon-th"></i> <g:message code="show.sidebar02.showrawprocessed.span" default="Original vs Processed"/></span>
+        <span id="processedVsRawViewSpan" href="#processedVsRawView" title=""><i class="glyphicon glyphicon-th" aria-hidden="true"></i> <g:message code="show.sidebar02.showrawprocessed.span" default="Originales vs Traitées"/></span>
     </button>
 </div>
 <g:if test="${record.images}">

@@ -68,7 +68,7 @@
                     <g:message code="facet.group.${group.key}" default="${group.key}"/>
                 </a>
             </div>
-            <div class="facetsGroup" id="group_${keyCamelCase}" aria-hidden="true">
+            <div class="facetsGroup" id="group_${keyCamelCase}">
                 <g:set var="firstGroup" value="${false}"/>
                 <g:each in="${group.value}" var="facetFromGroup">
                     <%--  Do a lookup on groupedFacetsMap for the current facet --%>

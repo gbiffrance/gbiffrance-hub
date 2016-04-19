@@ -113,7 +113,6 @@
         }); // end $(document).ready()
 
         function renderOutlierCharts(data){
-            console.log ("Je vérifie que je suis bien dans la bonne fonction");
             var chartQuery = null;
 
             if (OCC_REC.taxonRank  == 'species') {
@@ -157,7 +156,7 @@
             <div id="headingBar" class="recordHeader">
                 <h1 id="recordTitle"><g:message code="show.headingbar01.title" default="Enregistrement d'occurrence "/> : 
                     <span id="recordId">${recordId}</span></h1>
-                %{-- <div id="jsonLink">
+                 <div id="jsonLink">
                     <g:if test="${isCollectionAdmin}">
                         <g:set var="admin" value=" - admin"/>
                     </g:if>
@@ -168,7 +167,7 @@
                         <div id="clubView"><g:message code="show.clubview.message" default="Showing &quot;Club View&quot;"/></div>
                     </g:if>
                     <!-- <a href="${json}">JSON</a> -->
-                </div> --}%
+                </div> 
                 <div id="backBtn" class="pull-right">
                     <a href="#" title="Return to search results" class="btn" id="back-btn"><g:message code="show.backbtn.navigator" default="Back to search results"/></a>
                 </div>
@@ -197,7 +196,7 @@
                     </g:if>
                 </div>
             </div>
-            <div class="row-fluid">
+            <div>
                 <div id="SidebarBoxZ" class="col-md-4">
                     <g:render template="recordSidebar" />
                 </div><!-- end div#SidebarBox -->
@@ -600,7 +599,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <button type="button" class="close" data-dismiss="modal" aria-lable="Close"><span aria-hidden="true">&times;</span></button>
                             <h3 id="processedVsRawViewLabel"><g:message code="show.processedvsrawview.title" default="&quot;Original versus Processed&quot; Comparison Table"/></h3>
                         </div>
                         <div class="modal-body">
@@ -619,7 +618,7 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-small" data-dismiss="modal" aria-hidden="true" style="float:right;"><g:message code="show.processedvsrawview.button.close" default="Close"/></button>
+                            <button class="btn btn-small" data-dismiss="modal" style="float:right;"><g:message code="show.processedvsrawview.button.close" default="Close"/></button>
                         </div>
                     </div>
                 </div>

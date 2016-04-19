@@ -118,13 +118,13 @@ class PostProcessingService {
         return sampleInfo.sort{a,b -> (a.classification1 <=> b.classification1 ?: a.layerDisplayName <=> b.layerDisplayName)}
     }
 
-   /**
-     * Build a LinkedHashMap form of the facets to display in the cutomise drop down div
+    /**
+     * Build a LinkedHashMap form of the facets to display in the customise drop down div
      *
      * @param defaultFacets
      * @return LinkedHashMap facetsMap
      */
-   def LinkedHashMap getAllFacets(JSONArray defaultFacets) {
+    def LinkedHashMap getAllFacets(List defaultFacets) {
         LinkedHashMap<String, Boolean> facetsMap = new LinkedHashMap<String, Boolean>()
         List orderedFacets = []
         List facetsToInclude = grailsApplication.config.facets?.include?.split(',') ?: []
@@ -152,9 +152,9 @@ class PostProcessingService {
                 facetsMap.put(it, !facetsToHide.contains(it))
             }
         }
-
+        log.debug "facetsMap =${facetsMap}"
         return facetsMap
-   }
+    }
 
     /**
      * Filter the Map of all facets to produce a list of only the "active" or selected
@@ -163,7 +163,7 @@ class PostProcessingService {
      * @param finalFacetsMap
      * @return
      */
-   def String[] getFilteredFacets(LinkedHashMap<String, Boolean> finalFacetsMap) {
+    def String[] getFilteredFacets(LinkedHashMap<String, Boolean> finalFacetsMap) {
         List finalFacets = []
 
         for (String key : finalFacetsMap.keySet()) {
@@ -185,7 +185,7 @@ class PostProcessingService {
      * @param request
      * @return
      */
-   def String[] getFacetsFromCookie(HttpServletRequest request) {
+    def String[] getFacetsFromCookie(HttpServletRequest request) {
 
         String userFacets = null
         String[] facets = null
@@ -204,7 +204,7 @@ class PostProcessingService {
         }
 
         return facets
-   }
+    }
 
     /**
      * Utility method for getting a named cookie value from the HttpServletRepsonse cookies array
@@ -235,9 +235,8 @@ class PostProcessingService {
      */
     String[] mergeRequestedFacets(List requestedFacets, List customFacets) {
         List customFacetsFlat = customFacets.collect { it.name }
-        log.debug "customFacetsFlat = ${customFacetsFlat}"
-        requestedFacets.addAll(customFacetsFlat)
-        return requestedFacets
+        requestedFacets.addAll(0, customFacetsFlat)
+        requestedFacets
     }
 
     /**
@@ -334,10 +333,18 @@ class PostProcessingService {
      * @param ungroupedFacetsList
      * @return
      */
-    def Map getAllGroupedFacets(Map groupedFacets, def facetResults) {
+    def Map getAllGroupedFacets(Map groupedFacets, def facetResults, dynamicFacets) {
         List ungroupedFacetsList = getUngroupedFacetsList(groupedFacets, getMapOfFacetResults(facetResults))
         def finalGroupedFacets = groupedFacets.clone()
-        finalGroupedFacets.put("Ungrouped", ungroupedFacetsList)
+        def dynamicFacetNames = dynamicFacets.collect { it.name }
+        finalGroupedFacets.put("Ungrouped", [])
+        ungroupedFacetsList.each { facet ->
+            if(dynamicFacetNames.contains(facet)){
+                finalGroupedFacets.get("Custom").add(facet)
+            } else {
+                finalGroupedFacets.get("Ungrouped").add(facet)
+            }
+        }
         finalGroupedFacets
     }
 
@@ -364,5 +371,21 @@ class PostProcessingService {
         }
 
         ungroupedFacetsList
+    }
+
+    /**
+     * Extract list of facet fields from the grouped facets Map (json)
+     *
+     * @param groupedFacets
+     * @return
+     */
+    List getListFromGroupedFacets(Map groupedFacets) {
+        List facets = []
+
+        groupedFacets.each { key, value ->
+            facets.addAll(value)
+        }
+
+        facets
     }
 }

@@ -24,11 +24,6 @@ class WebServicesService {
     public static final String CONTEXTUAL = "Contextual"
     def grailsApplication, facetsCacheService
 
-        // def JSONObject totalCount(){
-    //     def url="${grailsApplication.config.biocache.baseUrl}/occurrences/search?$q=*:*&facet=off&pageSize=0"
-    //     getJsonElements(url)
-    // }
-    
     def JSONObject fullTextSearch(SpatialSearchRequestParams requestParams) {
         def url = "${grailsApplication.config.biocache.baseUrl}/occurrences/search?${requestParams.getEncodedParams()}"
         getJsonElements(url)
@@ -52,8 +47,6 @@ class WebServicesService {
         getJsonElements(url)
     }
 
-
-
     def JSONArray getMapLegend(String queryString) {
         def url = "${grailsApplication.config.biocache.baseUrl}/mapping/legend?${queryString}"
         JSONArray json = getJsonElements(url)
@@ -65,18 +58,16 @@ class WebServicesService {
                 // do this once
                 facetName = item.fq?.tokenize(':')?.get(0)?.replaceFirst(/^\-/,'')
                 try {
-                    FacetsName fn = FacetsName.valueOfFieldName(facetName)
-                    facetLabelsMap = facetsCacheService.getFacetNamesFor(fn) // cached
+                    facetLabelsMap = facetsCacheService.getFacetNamesFor(facetName) // cached
                 } catch (IllegalArgumentException iae) {
                     log.info "${iae.message}"
                 }
             }
 
-            if (facetLabelsMap.containsKey(item.name)) {
+            if (facetLabelsMap && facetLabelsMap.containsKey(item.name)) {
                 item.name = facetLabelsMap.get(item.name)
             }
         }
-
         json
     }
 
@@ -125,12 +116,24 @@ class WebServicesService {
     def Map getGroupedFacets() {
         log.info "Getting grouped facets"
         def url = "${grailsApplication.config.biocache.baseUrl}/search/grouped/facets"
-        JSONArray groupedArray = getJsonElements(url)
-        Map groupedMap = [:] // LinkedHashMap by default so ordering is maintained
 
-        // simplify DS into a Map with key as group name and value as list of facets
-        groupedArray.each { group ->
-            groupedMap.put(group.title, group.facets.collect { it.field })
+        if (grailsApplication.config.biocache.groupedFacetsUrl) {
+            // some hubs use a custom JSON url
+            url = "${grailsApplication.config.biocache.groupedFacetsUrl}"
+        }
+
+        Map groupedMap = [ "Custom" : []] // LinkedHashMap by default so ordering is maintained
+
+        try {
+            JSONArray groupedArray = getJsonElements(url)
+
+            // simplify DS into a Map with key as group name and value as list of facets
+            groupedArray.each { group ->
+                groupedMap.put(group.title, group.facets.collect { it.field })
+            }
+
+        } catch (Exception e) {
+            log.debug "$e"
         }
 
         groupedMap
@@ -192,27 +195,43 @@ class WebServicesService {
         getJsonElements(url)
     }
 
+    @Cacheable('collectoryCache')
+    def JSONArray getCollectionContact(String id){
+        def url = "${grailsApplication.config.collections.baseUrl}/ws/collection/${id.encodeAsURL()}/contact.json"
+        getJsonElements(url)
+    }
+
+    @Cacheable('collectoryCache')
+    def JSONArray getDataresourceContact(String id){
+        def url = "${grailsApplication.config.collections.baseUrl}/ws/dataResource/${id.encodeAsURL()}/contact.json"
+        getJsonElements(url)
+    }
+
     @Cacheable('longTermCache')
     def Map getLayersMetaData() {
         Map layersMetaMap = [:]
-        def url = "${grailsApplication.config.spatial.baseUrl}/ws/layers"
-        def jsonArray = getJsonElements(url)
+        def url = "${grailsApplication.config.layersservice.baseUrl}/layers"
 
-        jsonArray.each {
-            Map subset = [:]
-            subset << it // clone the original Map
-            subset.layerID = it.uid
-            subset.layerName = it.name
-            subset.layerDisplayName = it.displayname
-            subset.value = null
-            subset.classification1 = it.classification1
-            subset.units = it.environmentalvalueunits
+        try {
+            def jsonArray = getJsonElements(url)
+            jsonArray.each {
+                Map subset = [:]
+                subset << it // clone the original Map
+                subset.layerID = it.uid
+                subset.layerName = it.name
+                subset.layerDisplayName = it.displayname
+                subset.value = null
+                subset.classification1 = it.classification1
+                subset.units = it.environmentalvalueunits
 
-            if (it.type == ENVIRONMENTAL) {
-                layersMetaMap.put("el" + it.uid.trim(), subset)
-            } else if (it.type == CONTEXTUAL) {
-                layersMetaMap.put("cl" + it.uid.trim(), subset)
+                if (it.type == ENVIRONMENTAL) {
+                    layersMetaMap.put("el" + it.uid.trim(), subset)
+                } else if (it.type == CONTEXTUAL) {
+                    layersMetaMap.put("cl" + it.uid.trim(), subset)
+                }
             }
+        } catch (RestClientException rce) {
+            log.debug "Can't access layer service - ${rce.message}"
         }
 
         return layersMetaMap
@@ -236,7 +255,7 @@ class WebServicesService {
 
         List encodedQueries = taxaQueries.collect { it.encodeAsURL() } // URL encode params
 
-        def url = grailsApplication.config.bie.baseUrl + "/ws/guid/batch?q=" + encodedQueries.join("&q=")
+        def url = grailsApplication.config.bieService.baseUrl + "/guid/batch?q=" + encodedQueries.join("&q=")
         JSONObject guidsJson = getJsonElements(url)
 
         taxaQueries.each { key ->
@@ -261,13 +280,13 @@ class WebServicesService {
 
     @Cacheable('longTermCache')
     def JSONArray getLoggerReasons() {
-        def url = "http://logger.ala.org.au/service/logger/reasons"
+        def url = "${grailsApplication.config.logger.baseUrl}/logger/reasons"
         getJsonElements(url)
     }
 
     @Cacheable('longTermCache')
     def JSONArray getLoggerSources() {
-        def url = "http://logger.ala.org.au/service/logger/sources"
+        def url = "${grailsApplication.config.logger.baseUrl}/logger/sources"
         try {
             getJsonElements(url)
         } catch (Exception ex) {
@@ -304,7 +323,7 @@ class WebServicesService {
      * @return
      */
     List getDynamicFacets(String query) {
-        def url = "${grailsApplication.config.biocache.baseUrl}/upload/dynamicFacets?q=data_resource_uid:${query}"
+        def url = "${grailsApplication.config.biocache.baseUrl}/upload/dynamicFacets?q=${query}"
         JSONArray facets = getJsonElements(url)
         def dfs = []
         facets.each {
@@ -349,8 +368,6 @@ class WebServicesService {
     def JSONElement getJsonElements(String url) {
         log.debug "(internal) getJson URL = " + url
         def conn = new URL(url).openConnection()
-        //JSONObject.NULL.metaClass.asBoolean = {-> false}
-
         try {
             conn.setConnectTimeout(10000)
             conn.setReadTimeout(50000)
@@ -452,8 +469,8 @@ class WebServicesService {
             throw new RestClientException(error) // exception will result in no caching as opposed to returning null
         } catch (Exception e) {
             def error = "Failed calling web service. ${e.getMessage()} URL= ${url}." +
-                        "statusCode: " +conn?.responseCode?:"" +
-                        "detail: " + conn?.errorStream?.text
+                    "statusCode: " +conn?.responseCode?:"" +
+                    "detail: " + conn?.errorStream?.text
             throw new RestClientException(error) // exception will result in no caching as opposed to returning null
         }
     }

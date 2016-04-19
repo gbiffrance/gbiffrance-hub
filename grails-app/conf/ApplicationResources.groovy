@@ -23,5 +23,35 @@ modules = {
         resource url: [dir:'images', file:'gbif-fr.png']
         resource url: [dir:'images', file:'logo-gbif.jpg'] 
     }
+    bootstrap3{
+        resource url:[dir:'bootstrap3/js', file:'bootstrap.js',  disposition: 'head']
+        resource url:[dir:'bootstrap3/css', file:'bootstrap.css',  attrs:[media:'screen, projection, print']]
+        resource url:[dir:'bootstrap3/css', file:'bootstrap-theme.css',  attrs:[media:'screen, projection, print']]
+    }
+
+    search {
+        dependsOn 'searchCore'
+        defaultBundle 'search-core'
+        resource url:[dir:'css', file:'print-search.css', plugin:'biocache-hubs'], attrs: [ media: 'print' ]
+        resource url:[dir:'js', file:'search.js'], disposition: 'head'
+    }
+
+    show {
+        dependsOn 'jquery'
+        resource url:[dir:'css', file:'record.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
+        resource url:[dir:'css', file:'print-record.css', plugin:'biocache-hubs'], attrs: [ media: 'print' ]
+        resource url:[dir:'js', file:'audiojs/audio.min.js', plugin:'biocache-hubs'], disposition: 'head', exclude: '*'
+        resource url:[dir:'js', file:'show.js']
+        resource url:[dir:'js', file:'charts2.js', plugin:'biocache-hubs'], disposition: 'head'
+        resource url:[dir:'js', file:'wms2.js', plugin:'biocache-hubs'], disposition: 'head'
+    }
+
+    exploreYourArea {
+        dependsOn 'jquery, purl'
+        resource url:[dir:'css', file:'exploreYourArea.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
+        resource url:[dir:'css', file:'print-area.css', plugin:'biocache-hubs'], attrs: [ media: 'print' ]
+        resource url:[dir:'js', file:'magellan.js', plugin:'biocache-hubs']
+        resource url:[dir:'js', file:'yourAreaMap.js']
+    }
 
 }
