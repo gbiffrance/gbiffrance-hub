@@ -23,10 +23,10 @@ modules = {
         resource url: [dir:'images', file:'gbif-fr.png']
         resource url: [dir:'images', file:'logo-gbif.jpg'] 
     }
-    bootstrap3{
-        resource url:[dir:'bootstrap3/js', file:'bootstrap.js',  disposition: 'head']
-        resource url:[dir:'bootstrap3/css', file:'bootstrap.css',  attrs:[media:'screen, projection, print']]
-        resource url:[dir:'bootstrap3/css', file:'bootstrap-theme.css',  attrs:[media:'screen, projection, print']]
+    bootstrap3 {
+        resource url: [dir: 'bootstrap3/js', file: 'bootstrap.js', disposition: 'head']
+        resource url: [dir: 'bootstrap3/css', file: 'bootstrap.css', attrs: [media: 'screen, projection, print']]
+        resource url: [dir: 'bootstrap3/css', file: 'bootstrap-theme.css', attrs: [media: 'screen, projection, print']]
     }
 
     search {
