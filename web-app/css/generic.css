@@ -336,6 +336,7 @@ ul.nav ul > li {
     background-image: none;
     border: 1px solid rgba(136, 126, 124, 1);
     color: white;
+    text-shadow: none;
 }
 
 /* RECHERCHE OCCURRENCE : PAGE RESULTAT */
