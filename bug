@@ -1,1 +1,2 @@
 essai de recherche d'occurrence de l'espèce "Turdus merula" (merle noir) : pas de match, alors qu'on a 126 occurrences (toutes du dataset ZO du MNHN) sur gbif.org
+ça a l'air d'être un bug général dans la recherche avancée en fait, je n'ai pas de résultats avec "Pica pica" en passant par la recherche avancée alors que j'en ai en faisant une recherche d'occurrence simple via la page d'accueil
