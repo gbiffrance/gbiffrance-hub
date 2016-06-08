@@ -58,7 +58,7 @@
     line-height: 1.5em;
 }
 
-.search-occurrence:hover {
+.search-occurrence:focus, .search-occurrence:active, .search-occurrence:focus, .search-occurrence:hover {
     background-color: rgba(136, 126, 124, 1);
     border: 1px solid rgba(136, 126, 124, 1); 
     color: white;
@@ -108,3 +108,17 @@
     border: 1px solid rgba(136, 126, 124, 1);
     color: white;
 }
+
+.access-data, .access-data:active, .access-data:focus, .access-data:hover {
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    background-image: none;
+    color: rgba(136, 126, 124, 1);
+    text-shadow: none;
+    font-size:10px;
+}
+
+.labelFirst{
+    color: rgb(136, 126, 124) !important;
+}
+

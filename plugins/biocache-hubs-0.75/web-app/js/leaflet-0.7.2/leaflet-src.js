@@ -8011,9 +8011,9 @@ L.Control.Zoom = L.Control.extend({
 	options: {
 		position: 'topleft',
 		zoomInText: '+',
-		zoomInTitle: 'Zoom in',
+		zoomInTitle: 'Zoomer',
 		zoomOutText: '-',
-		zoomOutTitle: 'Zoom out'
+		zoomOutTitle: 'Dézoomer'
 	},
 
 	onAdd: function (map) {

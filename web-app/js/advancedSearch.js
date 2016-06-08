@@ -147,7 +147,6 @@ $(document).ready(function() {
         var code = $(this).val();
         removeFieldFromQuery("institution_uid");
         removeFieldFromQuery("collection_uid");
-
         if (code.indexOf("in") != -1) {
             selectChange("institution_uid", code);
         } else if (code) {

@@ -51,7 +51,7 @@
             <td>
                 <select class="species_group" name="species_group" id="species_group">
                     <option value=""><g:message code="advancedsearch.table04col01.option.label" default="-- select a species group --"/></option>
-                    <g:each var="group" in="${request.getAttribute(FacetsName.SPECIES_GROUP.fieldname)}">
+                    <g:each var="group" in="${request.getAttribute("species_group")}">
                         <option value="${group.key}">${group.value}</option>
                     </g:each>
                 </select>
@@ -68,20 +68,14 @@
             <td>
                 <select class="institution_uid collection_uid" name="institution_collection" id="institution_collection">
                     <option value=""><g:message code="advancedsearch.table05col01.option01.label" default="-- selectionner une institution ou une collection --"/></option>
-                    <g:each var="inst" in="${request.getAttribute(FacetsName.INSTITUTION.fieldname)}">
+                    <g:each var="inst" in="${request.getAttribute("institution_uid")}">
+                        ${inst.value} | ${inst.key}
                         <optgroup label="${inst.value}">
                             <option value="${inst.key}"><g:message code="advancedsearch.table05col01.option02.label" default="Tous les enregistrement venant de"/> ${inst.value}</option>
-                            <g:each var="coll" in="${request.getAttribute(FacetsName.COLLECTION.fieldname)}">
-                                <g:if test="${inst.key == 'in13' && StringUtils.startsWith(coll.value, inst.value)}">
-                                    <option value="${coll.key}">${StringUtils.replace(StringUtils.replace(coll.value, inst.value, ""), " - " ,"")} <g:message code="advancedsearch.table05col01.option03.label" default="Collection"/></option>
+                            <g:each var="coll" in="${request.getAttribute("collection_uid")}">
+                                <g:if test="${StringUtils.startsWith(coll.value, inst.value)}">
+                                    <option value="${coll.key}"> ${StringUtils.replace(coll.value, inst.value, "")}</option>
                                 </g:if>
-                                <g:elseif test="${inst.key == 'in6' && StringUtils.startsWith(coll.value, 'Australian National')}">
-                                    <%-- <option value="${coll.key}">${fn:replace(coll.value,"Australian National ", "")}</option> --%>
-                                    <option value="${coll.key}">${coll.value}</option>
-                                </g:elseif>
-                                <g:elseif test="${StringUtils.startsWith(coll.value, inst.value)}">
-                                    <option value="${coll.key}">${StringUtils.replace(coll.value, inst.value, "")}</option>
-                                </g:elseif>
                             </g:each>
                         </optgroup>
                     </g:each>
@@ -90,6 +84,7 @@
         </tr>
         </tbody>
     </table>
+
     <div class="advancesearchTitle"><g:message code="advancedsearch.title06" default="Find records from the following regions"/></div>
     <table border="0" width="100" cellspacing="2" class="compact">
         <thead/>
@@ -99,7 +94,7 @@
             <td>
                 <select class="country" name="country" id="country">
                     <option value=""><g:message code="advancedsearch.table06col01.option.label" default="-- select a country --"/></option>
-                    <g:each var="country" in="${request.getAttribute(FacetsName.COUNTRIES.fieldname)}">
+                    <g:each var="country" in="${request.getAttribute("country")}">
                         <option value="${country.key}">${country.value}</option>
                     </g:each>
                 </select>
@@ -110,55 +105,15 @@
             <td>
                 <select class="state" name="state" id="state">
                     <option value=""><g:message code="advancedsearch.table06col02.option.label" default="-- select a state/territory --"/></option>
-                    <g:each var="state" in="${request.getAttribute(FacetsName.STATES.fieldname)}">
+                    <g:each var="state" in="${request.getAttribute("state")}">
                         <option value="${state.key}">${state.value}</option>
                     </g:each>
                 </select>
             </td>
         </tr>
-        <g:set var="autoPlaceholder" value="start typing and select from the autocomplete drop-down list"/>
-        <g:if test="${request.getAttribute(FacetsName.IBRA.fieldname) && request.getAttribute(FacetsName.IBRA.fieldname).size() > 1}">
-        <tr>
-            <td class="labels"><abbr title="Interim Biogeographic Regionalisation of Australia">IBRA</abbr> <g:message code="advancedsearch.table06col03.title" default="region"/></td>
-            <td>
-                <select class="biogeographic_region" name="ibra" id="ibra">
-                    <option value=""><g:message code="advancedsearch.table06col03.option.label" default="-- select an IBRA region --"/></option>
-                    <g:each var="region" in="${request.getAttribute(FacetsName.IBRA.fieldname)}">
-                        <option value="${region.key}">${region.value}</option>
-                    </g:each>
-                </select>
-            </td>
-        </tr>
-        </g:if>
-        <g:if test="${request.getAttribute(FacetsName.IMCRA.fieldname) && request.getAttribute(FacetsName.IMCRA.fieldname).size() > 1}">
-        <tr>
-            <td class="labels"><abbr title="Integrated Marine and Coastal Regionalisation of Australia">IMCRA</abbr> <g:message code="advancedsearch.table06col04.title" default="region"/></td>
-            <td>
-                <select class="biogeographic_region" name="imcra" id="imcra">
-                    <option value=""><g:message code="advancedsearch.table06col04.option.label" default="-- select an IMCRA region --"/></option>
-                    <g:each var="region" in="${request.getAttribute(FacetsName.IMCRA.fieldname)}">
-                        <option value="${region.key}">${region.value}</option>
-                    </g:each>
-                </select>
-            </td>
-        </tr>
-        </g:if>
-        <g:if test="${request.getAttribute(FacetsName.LGA.fieldname) && request.getAttribute(FacetsName.LGA.fieldname).size() > 1}">
-        <tr>
-            <td class="labels"><g:message code="advancedsearch.table06col05.title" default="Local Govt. Area"/></td>
-            <td>
-                <select class="lga" name="cl959" id="cl959">
-                    <option value=""><g:message code="advancedsearch.table06col05.option.label" default="-- select local government area--"/></option>
-                    <g:each var="region" in="${request.getAttribute(FacetsName.LGA.fieldname)}">
-                        <option value="${region.key}">${region.value}</option>
-                    </g:each>
-                </select>
-            </td>
-        </tr>
-        </g:if>
         </tbody>
     </table>
-    <g:if test="${request.getAttribute(FacetsName.TYPE_STATUS.fieldname) && request.getAttribute(FacetsName.TYPE_STATUS.fieldname).size() > 1}">
+    <g:if test="${request.getAttribute("type_status") && request.getAttribute("type_status").size() > 1}">
         <b><g:message code="advancedsearch.title07" default="Find records from the following type status"/></b>
         <table border="0" width="100" cellspacing="2" class="compact">
             <thead/>
@@ -168,7 +123,7 @@
                 <td>
                     <select class="type_status" name="type_status" id="type_status">
                         <option value=""><g:message code="advancedsearch.table07col01.option.label" default="-- select a type status --"/></option>
-                        <g:each var="type" in="${request.getAttribute(FacetsName.TYPE_STATUS.fieldname)}">
+                        <g:each var="type" in="${request.getAttribute("type_status")}">
                             <option value="${type.key}">${type.value}</option>
                         </g:each>
                     </select>
@@ -177,7 +132,7 @@
             </tbody>
         </table>
     </g:if>
-    <g:if test="${request.getAttribute(FacetsName.BASIS_OF_RECORD.fieldname) && request.getAttribute(FacetsName.BASIS_OF_RECORD.fieldname).size() > 1}">
+    <g:if test="${request.getAttribute("basis_of_record") && request.getAttribute("basis_of_record").size() > 1}">
         <b><g:message code="advancedsearch.title08" default="Find records from the following basis of record (record type)"/></b>
         <table border="0" width="100" cellspacing="2" class="compact">
             <thead/>
@@ -187,7 +142,7 @@
                 <td>
                     <select class="basis_of_record" name="basis_of_record" id="basis_of_record">
                         <option value=""><g:message code="advancedsearch.table08col01.option.label" default="-- select a basis of record --"/></option>
-                        <g:each var="bor" in="${request.getAttribute(FacetsName.BASIS_OF_RECORD.fieldname)}">
+                        <g:each var="bor" in="${request.getAttribute("basis_of_record")}">
                             <option value="${bor.key}"><g:message code="${bor.value}"/></option>
                         </g:each>
                     </select>

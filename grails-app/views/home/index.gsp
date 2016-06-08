@@ -10,7 +10,6 @@
 <g:set var="biocacheServiceUrl" value="${grailsApplication.config.biocache.baseUrl}"/>
 <g:set var="serverName" value="${grailsApplication.config.serverName?:grailsApplication.config.biocache.baseUrl}"/>
 <!DOCTYPE html>
-<html>
 <head>
     <meta name="layout" content="${grailsApplication.config.skin.layout}"/>
     <meta name="section" content="search"/>
@@ -102,7 +101,7 @@
         }
     </style>
     <script src="http://maps.google.com/maps/api/js?v=3.5&sensor=false"></script>
-    <r:require modules="jquery, leaflet, mapCommon, bootstrap3, alf"/>
+    <r:require modules="jquery, leaflet, mapCommon, bootstrap3, alf, searchMap, bootstrapCombobox, bieAutocomplete"/>
     <g:if test="${grailsApplication.config.skin.useAlaBie?.toBoolean()}">
         <r:require module="bieAutocomplete"/>
     </g:if>
@@ -111,8 +110,10 @@
         var BC_CONF = {
             biocacheServiceUrl: "${alatag.getBiocacheAjaxUrl()}",
             bieWebappUrl: "${grailsApplication.config.bie.baseUrl}",
+            autocompleteHints: ${grailsApplication.config.bie?.autocompleteHints?.encodeAsJson()?:'{}'},
             contextPath: "${request.contextPath}",
-            queryContext: "${grailsApplication.config.biocache.queryContext}"
+            queryContext: "${grailsApplication.config.biocache.queryContext}",
+            locale: "${org.springframework.web.servlet.support.RequestContextUtils.getLocale(request)}"
         }
 
         $(document).ready(function() {
@@ -242,10 +243,10 @@
                 zoom: MAP_VAR.defaultZoom,
                 minZoom: 1,
                 scrollWheelZoom: false
-//                fullscreenControl: true,
-//                fullscreenControlOptions: {
-//                    position: 'topleft'
-//                }
+                //fullscreenControl: true,
+                //fullscreenControlOptions: {
+                //    position: 'topleft'
+                //}
             });
 
             //add edit drawing toolbar
@@ -321,7 +322,7 @@
                     callback: destroyHelpTooltip // hide help tooltip when mouse over the tools
                 }
                 $('.leaflet-draw-toolbar a').tooltip(opts);
-                $('.leaflet-draw-toolbar').first().attr('title','Start by choosing a tool').tooltip({placement:'right'}).tooltip('show');
+                $('.leaflet-draw-toolbar').first().attr('title','Commencer par choisir un outil').tooltip({placement:'right'}).tooltip('show');
             });
 
             // Hide help tooltip on first click event
@@ -345,8 +346,9 @@
     </r:script>
 </head>
 
-<body>
 
+
+ <div class="row col-xs-12 col-sm-12">
     <div id="headingBar">
         <h2 id="searchHeader"><g:message code="home.index.body.title" default="Recherche par occurrence"/></h2>
     </div>
@@ -362,7 +364,7 @@
                 <ul class="nav nav-tabs" id="searchTabs" role="tablist">
                     <li role="presentation" class="active"><a id="t1" href="#simpleSearch" aria-controls="simpleSearch" data-toggle="tab" class="title-tab"><g:message code="home.index.navigator01" default="Recherche simple"/></a></li>
                     <li><a id="t2" href="#advanceSearch" data-toggle="tab" class="title-tab"><g:message code="home.index.navigator02" default="Recherche avancée"/></a></li>
-                    <li><a id="t3" href="#taxaUpload" data-toggle="tab" class="title-tab"><g:message code="home.index.navigator03" default="Recherche par taxon"/></a></li>
+                    %{--<li><a id="t3" href="#taxaUpload" data-toggle="tab" class="title-tab"><g:message code="home.index.navigator03" default="Recherche par taxon"/></a></li>--}%
                     <li><a id="t5" href="#spatialSearch" data-toggle="tab" class="title-tab"><g:message code="home.index.navigator05" default="Recherche spatiale"/></a></li>
                 </ul>
             </div>
@@ -372,7 +374,7 @@
                         <br/>
                         <div class="controls">
                             <div class="input-group">
-                                <input type="text" class="form-control input-lg" name="taxa" id"taxa" placeholder="Nom scientifique, nom vernaculaire, etc.">
+                                <input type="text" class="form-control input-lg" name="taxa" id="taxa" placeholder="Nom scientifique, nom vernaculaire, etc.">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default search-occurrence btn-lg" type="submit" id="locationSearch" >
                                         <g:message code="home.index.simsplesearch.button" default="Rechercher"/>
@@ -427,33 +429,34 @@
                                 <g:message code="search.map.helpText" default="Select one of the draw tools (polygon, rectangle, circle), draw a shape and click the search link that pops up."/>
                             </div>
                             <br>
-                           %{--  <div class="accordion accordion-caret" id="accordion2">
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                                            <g:message code="search.map.importToggle" default="Import WKT"/>
-                                        </a>
-                                    </div>
-                                    <div id="collapseOne" class="accordion-body collapse">
-                                        <div class="accordion-inner">
-                                            <p><g:message code="search.map.importText"/></p>
-                                            <p><g:message code="search.map.wktHelpText" default="Optionally, paste a WKT string: "/></p>
-                                            <textarea type="text" id="wktInput"></textarea>
-                                            <br>
-                                            <button class="btn btn-small" id="addWkt"><g:message code="search.map.wktButtonText" default="Add to map"/></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
- --}%
+                             %{--<div class="accordion accordion-caret" id="accordion2">--}%
+                                %{--<div class="accordion-group">--}%
+                                    %{--<div class="accordion-heading">--}%
+                                        %{--<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">--}%
+                                            %{--<g:message code="search.map.importToggle" default="Import WKT"/>--}%
+                                        %{--</a>--}%
+                                    %{--</div>--}%
+                                    %{--<div id="collapseOne" class="accordion-body collapse">--}%
+                                        %{--<div class="accordion-inner">--}%
+                                            %{--<p><g:message code="search.map.importText"/></p>--}%
+                                            %{--<p><g:message code="search.map.wktHelpText" default="Optionally, paste a WKT string: "/></p>--}%
+                                            %{--<textarea type="text" id="wktInput"></textarea>--}%
+                                            %{--<br>--}%
+                                            %{--<button class="btn btn-small" id="addWkt"><g:message code="search.map.wktButtonText" default="Add to map"/></button>--}%
+                                        %{--</div>--}%
+                                    %{--</div>--}%
+                                %{--</div>--}%
+                            %{--</div>--}%
+
                         </div>
                         <div class="col-md-9">
-                            <div id="leafletMap" style="height:600px;"></div>
+                            <div id="leafletMap" style="height:600px; "></div>
                         </div>
                     </div>
                 </div><!-- end #spatialSearch  -->
             </div><!-- end .tab-content -->
         </div><!-- end .span12 -->
     </div><!-- end .row-fluid -->
+</div>
 </body>
 </html>

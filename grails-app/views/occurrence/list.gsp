@@ -44,7 +44,8 @@
             queryContext: "${grailsApplication.config.biocache.queryContext}",
             zoomOutsideScopedRegion: Boolean("${grailsApplication.config.map.zoomOutsideScopedRegion}"),
             hasMultimedia: ${hasImages?:'false'}, // will be either true or false
-            locale: "${request.locale}"
+            locale: "${request.locale}",
+            selectedDataResource: "${selectedDataResource}"
         };
 
         console.log("${alatag.getBiocacheAjaxUrl()}");
@@ -66,7 +67,7 @@
             <form action="${g.createLink(controller: 'occurrences', action: 'search')}" id="solrSearchForm" class="">
                 
                 <div class="input-group">
-                    <div id="advancedSearchLink"><a href="${g.createLink(uri: '/search')}#tab_advanceSearch"><g:message code="list.advancedsearchlink.navigator" default="Recherche avancée"/></a></div>
+                    <div id="advancedSearchLink"><a href="${g.createLink(uri: '/search')}#tab_advanceSearch" class="link"><g:message code="list.advancedsearchlink.navigator" default="Recherche avancée"/></a></div>
                     <div class="input-group">
                         <input type="text" id="taxaQuery" name="${searchQuery}" class="form-control" value="${params.list(searchQuery).join(' OR ')}" >
                         <span class="input-group-btn">
@@ -128,17 +129,17 @@
                     </a>
 
                      %{-- Menu déroulant du bouton Personnalisé les filtres --}%
-                    <div class="dropdown-menu" role="menu"> <%--facetOptions--%>
+                    <div class="dropdown-menu" role="menu" style="width: 500%;"> <%--facetOptions--%>
                         <h4><g:message code="list.customisefacetsbutton.div01.title" default="Sélectionnez les catégories de filtre que vous souhaitez voir apparaître dans la colonne &quot;Affiner les résultats&quot;"/></h4>
                         <%-- <form:checkboxes path="facets" items="${defaultFacets}" itemValue="key" itemLabel="value" /> --%>
                         <div id="facetCheckboxes">
                         <g:message code="list.facetcheckboxes.label01" default="Sélectionner"/>: 
-                            <a href="#" id="selectAll"><g:message code="list.facetcheckboxes.navigator01" default="Tous"/></a> |<a href="#" id="selectNone"><g:message code="list.facetcheckboxes.navigator02" default="Aucun"/></a>
+                            <a href="#" id="selectAll" class="link"><g:message code="list.facetcheckboxes.navigator01" default="Tous"/></a> |<a href="#" id="selectNone" class="link"><g:message code="list.facetcheckboxes.navigator02" default="Aucun"/></a>
                             &nbsp;&nbsp;
-                            <button  id="updateFacetOptions" class="btn btn-primary btn-small"><g:message code="list.facetcheckboxes.button.updatefacetoptions" default="Actualiser"/></button>
+                            <button  id="updateFacetOptions" class="btn btn-default access-data"><g:message code="list.facetcheckboxes.button.updatefacetoptions" default="Actualiser"/></button>
                             &nbsp;&nbsp;
                             <g:set var="resetTitle" value="Restore default settings"/>
-                            <button id="resetFacetOptions" class="btn btn-small" title="${resetTitle}"><g:message code="list.facetcheckboxes.button.resetfacetoptions" default="Réinitialiser"/></button>
+                            <button id="resetFacetOptions" class="btn btn-default access-data" title="${resetTitle}"><g:message code="list.facetcheckboxes.button.resetfacetoptions" default="Réinitialiser"/></button>
                             <br/>
                             %{--<div class="facetsColumn">--}%
                             <%-- iterate over the groupedFacets, checking the defaultFacets for each entry --%>
@@ -151,14 +152,13 @@
                                         <g:if test="${defaultFacets.containsKey(facetFromGroup)}">
                                             <g:set var="count" value="${count+1}"/>
                                             <input type="checkbox" name="facets" class="facetOpts" value="${facetFromGroup}"
-                                                ${(defaultFacets.get(facetFromGroup)) ? 'checked=checked' : ''}>&nbsp;<alatag:message code="facet.${facetFromGroup}"/><br>
+                                                ${(defaultFacets.get(facetFromGroup)) ? 'checked=checked' : ''}><span class="facetName">&nbsp;<alatag:message code="facet.${facetFromGroup}"/></span><br>
                                         </g:if>
                                     </g:each>
                                 </div>
                             </g:each>
                             %{--</div>--}%
                             <g:if test="${false && dynamicFacets}"><!-- INACTIVE - user not able to toggle display of custom fields for now -->
-                            plop
                                 <div class="facetsColumn">
                                     <h4><g:message code="list.facetcheckboxes.div02.title" default="Custom facets"/></h4>
                                     <g:each var="facet" in="${dynamicFacets}">
@@ -206,9 +206,9 @@
                                 </a>
                             </g:elseif>
                             <g:if test="${sr.activeFacetMap?.size() > 1}">
-                                <button class="btn btn-primary btn-mini activeFilter" data-facet="all"
+                                <button class="btn  btn-mini activeFilter btn btn-default access-data" data-facet="all"
                                         title="Click to clear all filters"><span
-                                        class="closeX">&gt;&nbsp;</span><g:message code="list.resultsretuened.button01" default="Clear all"/></button>
+                                        class="closeX"></span><g:message code="list.resultsretuened.button01" default="Clear all"/></button>
                             </g:if>
                         </div>
                     </g:if>
@@ -279,15 +279,15 @@
                 <!-- Titre des onglets-->
                 <div class="tabbable">
                     <ul class="nav nav-tabs" data-tabs="tabs">
-                        <li class="active"><a id="t1" href="#recordsView" data-toggle="tab"><g:message code="list.link.t1" default="Enregistrements"/></a></li>
-                        <li><a id="t2" href="#mapView" data-toggle="tab"><g:message code="list.link.t2" default="Carte"/></a></li>
-                        <li><a id="t3" href="#chartsView" data-toggle="tab"><g:message code="list.link.t3" default="Graphiques"/></a></li>
-                        <g:if test="${showSpeciesImages}">
-                            <li><a id="t4" href="#speciesImages" data-toggle="tab"><g:message code="list.link.t4" default="Species images"/></a></li>
-                        </g:if>
-                        <g:if test="${hasImages}">
-                            <li><a id="t5" href="#recordImages" data-toggle="tab"><g:message code="list.link.t5" default="Record images"/></a></li>
-                        </g:if>
+                        <li class="active"><a id="t1" href="#recordsView" data-toggle="tab" class="link"><g:message code="list.link.t1" default="Enregistrements"/></a></li>
+                        <li><a id="t2" href="#mapView" data-toggle="tab" class="link" ><g:message code="list.link.t2" default="Carte"/></a></li>
+                        <li><a id="t3" href="#chartsView" data-toggle="tab" class="link"><g:message code="list.link.t3" default="Graphiques"/></a></li>
+                        %{--<g:if test="${showSpeciesImages}">--}%
+                            %{--<li><a id="t4" href="#speciesImages" data-toggle="tab"><g:message code="list.link.t4" default="Species images"/></a></li>--}%
+                        %{--</g:if>--}%
+                        %{--<g:if test="${hasImages}">--}%
+                            %{--<li><a id="t5" href="#recordImages" data-toggle="tab"><g:message code="list.link.t5" default="Record images"/></a></li>--}%
+                        %{--</g:if>--}%
                     </ul>
                 </div>
                 <div class="tab-content clearfix">
@@ -366,57 +366,58 @@
                     </div><!-- end #mapwrapper -->
                     
                     <div id="chartsView" class="tab-pane">
+                        <h2 class="admin-h2"><g:message code="public.sdr.content.label.stat" /></h2>
                         <div id="charts" class="row"></div>
                     </div><!-- end #chartsWrapper -->
 
 
-                    <g:if test="${showSpeciesImages}">
-                        <div id="speciesImages" class="tab-pane">
-                            <h3><g:message code="list.speciesimages.title" default="Representative images of species"/></h3>
-                            <div id="speciesGalleryControls">
-                                <g:message code="list.speciesgallerycontrols.label01" default="Filter by group"/>
-                                <select id="speciesGroup">
-                                    <option><g:message code="list.speciesgallerycontrols.speciesgroup.option01" default="no species groups loaded"/></option>
-                                </select>
-                                &nbsp;
-                                <g:message code="list.speciesgallerycontrols.label02" default="Sort by"/>
-                                <select id="speciesGallerySort">
-                                    <option value="common"><g:message code="list.speciesgallerycontrols.speciesgallerysort.option01" default="Common name"/></option>
-                                    <option value="taxa"><g:message code="list.speciesgallerycontrols.speciesgallerysort.option02" default="Scientific name"/></option>
-                                    <option value="count"><g:message code="list.speciesgallerycontrols.speciesgallerysort.option03" default="Record count"/></option>
-                                </select>
-                            </div>
-                            <div id="speciesGallery">[<g:message code="list.speciesgallerycontrols.speciesgallery" default="image gallery should appear here"/>]</div>
-                            <div id="loadMoreSpecies" style="display:none;">
-                                <button class="btn"><g:message code="list.speciesgallerycontrols.loadmorespecies.button" default="Show more images"/></button>
-                                <img style="display:none;" src="${request.contextPath}/images/indicator.gif"/>
-                            </div>
-                        </div><!-- end #speciesWrapper -->
-                    </g:if>
-                    <g:if test="${hasImages}">
-                        <div id="recordImages" class="tab-pane">
-                            <h3><g:message code="list.speciesgallerycontrols.recordimages.title" default="Images from occurrence records"/></h3>
-                            <%--<p>(see also <a href="#tab_speciesImages">representative species images</a>)</p>--%>
-                            <div id="imagesGrid">
-                            <g:message code="list.speciesgallerycontrols.imagesgrid" default="loading images"/>...
-                            </div>
-                            <div id="loadMoreImages" style="display:none;">
-                                <button class="btn"><g:message code="list.speciesgallerycontrols.loadmoreimages.button" default="Show more images"/>
-                                    <img style="display:none;" src="${request.contextPath}/images/indicator.gif"/>
-                                </button>
-                            </div>
-                            <%-- HTML template used by AJAX code --%>
-                            <div class="imgConTmpl hide">
-                                <div class="imgCon">
-                                    <a class="cbLink" rel="thumbs" href="" id="thumb">
-                                        <img src="" alt="${tc?.taxonConcept?.nameString} image thumbnail"/>
-                                        <div class="meta brief"></div>
-                                        <div class="meta detail hide"></div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- end #imagesWrapper -->
-                    </g:if>
+                    %{--<g:if test="${showSpeciesImages}">--}%
+                        %{--<div id="speciesImages" class="tab-pane">--}%
+                            %{--<h3><g:message code="list.speciesimages.title" default="Representative images of species"/></h3>--}%
+                            %{--<div id="speciesGalleryControls">--}%
+                                %{--<g:message code="list.speciesgallerycontrols.label01" default="Filter by group"/>--}%
+                                %{--<select id="speciesGroup">--}%
+                                    %{--<option><g:message code="list.speciesgallerycontrols.speciesgroup.option01" default="no species groups loaded"/></option>--}%
+                                %{--</select>--}%
+                                %{--&nbsp;--}%
+                                %{--<g:message code="list.speciesgallerycontrols.label02" default="Sort by"/>--}%
+                                %{--<select id="speciesGallerySort">--}%
+                                    %{--<option value="common"><g:message code="list.speciesgallerycontrols.speciesgallerysort.option01" default="Common name"/></option>--}%
+                                    %{--<option value="taxa"><g:message code="list.speciesgallerycontrols.speciesgallerysort.option02" default="Scientific name"/></option>--}%
+                                    %{--<option value="count"><g:message code="list.speciesgallerycontrols.speciesgallerysort.option03" default="Record count"/></option>--}%
+                                %{--</select>--}%
+                            %{--</div>--}%
+                            %{--<div id="speciesGallery">[<g:message code="list.speciesgallerycontrols.speciesgallery" default="image gallery should appear here"/>]</div>--}%
+                            %{--<div id="loadMoreSpecies" style="display:none;">--}%
+                                %{--<button class="btn"><g:message code="list.speciesgallerycontrols.loadmorespecies.button" default="Show more images"/></button>--}%
+                                %{--<img style="display:none;" src="${request.contextPath}/images/indicator.gif"/>--}%
+                            %{--</div>--}%
+                        %{--</div><!-- end #speciesWrapper -->--}%
+                    %{--</g:if>--}%
+                    %{--<g:if test="${hasImages}">--}%
+                        %{--<div id="recordImages" class="tab-pane">--}%
+                            %{--<h3><g:message code="list.speciesgallerycontrols.recordimages.title" default="Images from occurrence records"/></h3>--}%
+                            %{--<%--<p>(see also <a href="#tab_speciesImages">representative species images</a>)</p>--%>--}%
+                            %{--<div id="imagesGrid">--}%
+                            %{--<g:message code="list.speciesgallerycontrols.imagesgrid" default="loading images"/>...--}%
+                            %{--</div>--}%
+                            %{--<div id="loadMoreImages" style="display:none;">--}%
+                                %{--<button class="btn"><g:message code="list.speciesgallerycontrols.loadmoreimages.button" default="Show more images"/>--}%
+                                    %{--<img style="display:none;" src="${request.contextPath}/images/indicator.gif"/>--}%
+                                %{--</button>--}%
+                            %{--</div>--}%
+                            %{--<%-- HTML template used by AJAX code --%>--}%
+                            %{--<div class="imgConTmpl hide">--}%
+                                %{--<div class="imgCon">--}%
+                                    %{--<a class="cbLink" rel="thumbs" href="" id="thumb">--}%
+                                        %{--<img src="" alt="${tc?.taxonConcept?.nameString} image thumbnail"/>--}%
+                                        %{--<div class="meta brief"></div>--}%
+                                        %{--<div class="meta detail hide"></div>--}%
+                                    %{--</a>--}%
+                                %{--</div>--}%
+                            %{--</div>--}%
+                        %{--</div><!-- end #imagesWrapper -->--}%
+                    %{--</g:if>--}%
                 </div><!-- end .css-panes -->
                 <form name="raw_taxon_search" class="rawTaxonSearch" id="rawTaxonSearchForm" action="${request.contextPath}/occurrences/search/taxa" method="POST">
                         <%-- taxon concept search drop-down div are put in here via Jquery --%>

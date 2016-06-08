@@ -150,6 +150,8 @@
 
 </head>
 <body>
+
+
     <g:set var="json" value="${request.contextPath}/occurrences/${record?.raw?.uuid}.json" />
     <g:if test="${record}">
         <g:if test="${record.raw}">

@@ -89,7 +89,7 @@ $(document).ready(function() {
     });
 
     // "clear" button next to each taxon row
-    $("input.clear_taxon").live("click", function(e) {
+    $("input.clear_taxon").on("click", function(e) {
         e.preventDefault();
         $(this).hide();
         var num = $(this).attr("id").replace("clear_", ""); // get the num

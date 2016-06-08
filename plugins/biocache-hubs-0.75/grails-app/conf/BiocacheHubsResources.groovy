@@ -21,24 +21,19 @@ modules = {
         resource url: [dir:'js', file:'html5.js', plugin:'biocache-hubs'], wrapper: { s -> "<!--[if lt IE 9]>$s<![endif]-->" }, disposition: 'head'
     }
 
-    searchCore {
-        dependsOn 'jquery, purl'
-        defaultBundle 'search-core'
-        resource url:[dir:'css', file:'search.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
-        resource url:[dir:'css', file:'pagination.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
-        resource url:[dir:'js', file:'jquery.cookie.js', plugin:'biocache-hubs']
-        resource url:[dir:'js', file:'jquery.inview.min.js', plugin:'biocache-hubs']
-        resource url:[dir:'js', file:'jquery.jsonp-2.4.0.min.js', plugin:'biocache-hubs']
-        resource url:[dir:'js', file:'charts2.js', plugin:'biocache-hubs'], disposition: 'head'
-        resource url:[dir:'css', file:'font-awesome.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
-    }
+//    searchCore {
+//        dependsOn 'jquery, purl'
+//        defaultBundle 'search-core'
+//        resource url:[dir:'css', file:'search.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
+//        resource url:[dir:'css', file:'pagination.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
+//        resource url:[dir:'js', file:'jquery.cookie.js', plugin:'biocache-hubs']
+//        resource url:[dir:'js', file:'jquery.inview.min.js', plugin:'biocache-hubs']
+//        resource url:[dir:'js', file:'jquery.jsonp-2.4.0.min.js', plugin:'biocache-hubs']
+//        resource url:[dir:'js', file:'charts2.js', plugin:'biocache-hubs'], disposition: 'head'
+//        resource url:[dir:'css', file:'font-awesome.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
+//    }
 
-    search {
-        dependsOn 'searchCore'
-        defaultBundle 'search-core'
-        resource url:[dir:'css', file:'print-search.css', plugin:'biocache-hubs'], attrs: [ media: 'print' ]
-        resource url:[dir:'js', file:'search.js', plugin:'biocache-hubs'], disposition: 'head'
-    }
+
 
     bieAutocomplete {
         dependsOn 'jquery'
@@ -117,15 +112,15 @@ modules = {
         resource url:[dir:'js', file:'moment.min.js', plugin:'biocache-hubs']
     }
 
-    show {
-        dependsOn 'jquery'
-        resource url:[dir:'css', file:'record.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
-        resource url:[dir:'css', file:'print-record.css', plugin:'biocache-hubs'], attrs: [ media: 'print' ]
-        resource url:[dir:'js', file:'audiojs/audio.min.js', plugin:'biocache-hubs'], disposition: 'head', exclude: '*'
-        resource url:[dir:'js', file:'show.js', plugin:'biocache-hubs']
-        resource url:[dir:'js', file:'charts2.js', plugin:'biocache-hubs'], disposition: 'head'
-        resource url:[dir:'js', file:'wms2.js', plugin:'biocache-hubs'], disposition: 'head'
-    }
+//    show {
+//        dependsOn 'jquery'
+//        resource url:[dir:'css', file:'record.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
+//        resource url:[dir:'css', file:'print-record.css', plugin:'biocache-hubs'], attrs: [ media: 'print' ]
+//        resource url:[dir:'js', file:'audiojs/audio.min.js', plugin:'biocache-hubs'], disposition: 'head', exclude: '*'
+//        resource url:[dir:'js', file:'show.js']
+//        resource url:[dir:'js', file:'charts2.js', plugin:'biocache-hubs'], disposition: 'head'
+//        resource url:[dir:'js', file:'wms2.js', plugin:'biocache-hubs'], disposition: 'head'
+//    }
 
     exploreYourArea {
         dependsOn 'jquery, purl'
@@ -144,5 +139,11 @@ modules = {
         dependsOn 'jquery'
         resource url:[dir:'js/bootstrap-combobox/', file:'bootstrap-combobox.css', plugin:'biocache-hubs']
         resource url:[dir:'js/bootstrap-combobox/', file:'bootstrap-combobox.js', plugin:'biocache-hubs']
+    }
+
+    bieAutocomplete {
+        dependsOn 'jquery'
+        //defaultBundle 'main-core'
+        resource url: [dir:'js', file:'bieAutocomplete.js'], disposition: 'head'
     }
 }

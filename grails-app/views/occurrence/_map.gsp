@@ -2,9 +2,9 @@
 <style type="text/css">
 
 .leaflet-bottom.leaflet-left .leaflet-control-coordinates{
-     margin-left: 20px;
+    margin-left: 20px;
 }
-    
+
 #leafletMap {
     cursor: pointer;
     font-size: 12px;
@@ -94,7 +94,7 @@ a.colour-by-legend-toggle {
 }
 
 /*#mapLayerControls input[type="checkbox"] {*/
-    /*margin-top: 0;*/
+/*margin-top: 0;*/
 /*}*/
 
 .leaflet-bar-bg a,
@@ -164,16 +164,16 @@ a.colour-by-legend-toggle {
 
 <div style="margin-bottom: 10px">
 
-%{-- Nous n'utilisons pas encore le portail spatial --}%
-%{--     <g:if test="${grailsApplication.config.skin.useAlaSpatialPortal?.toBoolean()}">
-        <g:set var='spatialPortalLink' value="${sr.urlParameters}"/>
-        <g:set var='spatialPortalUrlParams' value="${grailsApplication.config.spatial.params}"/>
-        <div id="spatialPortalBtn" class="btn btn-small" style="margin-bottom: 2px;">
-            <a id="spatialPortalLink" class="tooltips"
-               href="${grailsApplication.config.spatial.baseUrl}${spatialPortalLink}${spatialPortalUrlParams}" title="Continue analysis in ALA Spatial Portal">
-                <i class="fa fa-map-marker"></i>&nbsp&nbsp;<g:message code="map.spatialportal.btn.label" default="View in spatial portal"/></a>
-        </div>
-    </g:if> --}%
+    %{-- Nous n'utilisons pas encore le portail spatial --}%
+    %{--     <g:if test="${grailsApplication.config.skin.useAlaSpatialPortal?.toBoolean()}">
+            <g:set var='spatialPortalLink' value="${sr.urlParameters}"/>
+            <g:set var='spatialPortalUrlParams' value="${grailsApplication.config.spatial.params}"/>
+            <div id="spatialPortalBtn" class="btn btn-small" style="margin-bottom: 2px;">
+                <a id="spatialPortalLink" class="tooltips"
+                   href="${grailsApplication.config.spatial.baseUrl}${spatialPortalLink}${spatialPortalUrlParams}" title="Continue analysis in ALA Spatial Portal">
+                    <i class="fa fa-map-marker"></i>&nbsp&nbsp;<g:message code="map.spatialportal.btn.label" default="View in spatial portal"/></a>
+            </div>
+        </g:if> --}%
 
     %{-- Bouton télecharger la carte --}%
     <div id="downloadMaps" class="btn btn-small">
@@ -270,7 +270,7 @@ a.colour-by-legend-toggle {
 
     var mbUrl = 'https://{s}.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={token}';
     var defaultBaseLayer = L.tileLayer(mbUrl, {mapid: '${grailsApplication.config.map.mapbox.id}', token: '${grailsApplication.config.map.mapbox.token}', attribution: mbAttr});
- 
+
     //var minimal = L.tileLayer(cmUrl, {styleId: 22677, attribution: cmAttr});
     //var defaultBaseLayer = L.tileLayer(mbUrl, {id: 'examples.map-20v6611k', attribution: mbAttr});
     //var defaultBaseLayer = new L.Google('ROADMAP');
@@ -286,28 +286,28 @@ a.colour-by-legend-toggle {
         defaultZoom : "${grailsApplication.config.map.defaultZoom?:'4'}",
         overlays : {
 
-            <g:if test="${grailsApplication.config.map.overlay.url}">
-                //example WMS layer
-                "${grailsApplication.config.map.overlay.name?:'overlay'}" : L.tileLayer.wms("${grailsApplication.config.map.overlay.url}", {
+    <g:if test="${grailsApplication.config.map.overlay.url}">
+        //example WMS layer
+        "${grailsApplication.config.map.overlay.name?:'overlay'}" : L.tileLayer.wms("${grailsApplication.config.map.overlay.url}", {
                     layers: 'ALA:ucstodas',
                     format: 'image/png',
                     transparent: true,
                     attribution: "${grailsApplication.config.map.overlay.name?:'overlay'}"
                 })
-            </g:if>
+    </g:if>
 
-        },
-        baseLayers : {
-            "Minimal" : defaultBaseLayer,
-            //"Night view" : L.tileLayer(cmUrl, {styleId: 999,   attribution: cmAttr}),
-            "Road" :  new L.Google('ROADMAP'),
-            "Terrain" : new L.Google('TERRAIN'),
-            "Satellite" : new L.Google('HYBRID')
-        },
-        layerControl : null,
-        currentLayers : [],
-        additionalFqs : '',
-        zoomOutsideScopedRegion: ${(grailsApplication.config.map.zoomOutsideScopedRegion == false || grailsApplication.config.map.zoomOutsideScopedRegion == "false") ? false : true}
+    },
+    baseLayers : {
+        "Minimal" : defaultBaseLayer,
+        //"Night view" : L.tileLayer(cmUrl, {styleId: 999,   attribution: cmAttr}),
+        "Road" :  new L.Google('ROADMAP'),
+        "Terrain" : new L.Google('TERRAIN'),
+        "Satellite" : new L.Google('HYBRID')
+    },
+    layerControl : null,
+    currentLayers : [],
+    additionalFqs : '',
+    zoomOutsideScopedRegion: ${(grailsApplication.config.map.zoomOutsideScopedRegion == false || grailsApplication.config.map.zoomOutsideScopedRegion == "false") ? false : true}
     };
 
     var ColourByControl = L.Control.extend({
@@ -366,7 +366,7 @@ a.colour-by-legend-toggle {
             }
         });
 
-  
+
 
         //add edit drawing toolbar
         // Initialise the FeatureGroup to store editable layers
@@ -956,9 +956,9 @@ a.colour-by-legend-toggle {
     function formatSciName(name, rankId) {
         var output = "";
         if (rankId && rankId >= 6000) {
-            output = "<i>" + name + "</i>";
+            output = "<i>" + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase() + "</i>";
         } else {
-            output = name;
+            output = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
         }
 
         return output;
@@ -1066,7 +1066,7 @@ a.colour-by-legend-toggle {
         <div class="multiRecordHeader hide">
             <g:message code="search.map.viewing" default="Viewing"/> <span class="currentRecord"></span> <g:message code="search.map.of" default="of"/>
             <span class="totalrecords"></span> <g:message code="search.map.occurrences" default="occurrence records"/>
-            &nbsp;&nbsp;<i class="icon-share-alt"></i> <a href="#" class="btn+btn-mini viewAllRecords"><g:message code="search.map.viewAllRecords" default="view all records"/></a>
+        &nbsp;&nbsp;<i class="icon-share-alt"></i> <a href="#" class="btn+btn-mini viewAllRecords"><g:message code="search.map.viewAllRecords" default="view all records"/></a>
         </div>
         <div class="recordSummary">
 
@@ -1081,29 +1081,29 @@ a.colour-by-legend-toggle {
     </div>
 </div>
 %{--<div style="display:none;">--}%
-    %{--<div class="popupSingleRecordTemplate">--}%
-        %{--<span class="dataResource">Dummy resource</span><br/>--}%
-        %{--<span class="institution">Dummy institution</span><br/>--}%
-        %{--<span class="collection">Dummy collection</span><br/>--}%
-        %{--<span class="catalogueNumber">Dummy catalogue number</span><br/>--}%
-        %{--<a href="" class="viewRecord">View this record</a>--}%
-    %{--</div>--}%
+%{--<div class="popupSingleRecordTemplate">--}%
+%{--<span class="dataResource">Dummy resource</span><br/>--}%
+%{--<span class="institution">Dummy institution</span><br/>--}%
+%{--<span class="collection">Dummy collection</span><br/>--}%
+%{--<span class="catalogueNumber">Dummy catalogue number</span><br/>--}%
+%{--<a href="" class="viewRecord">View this record</a>--}%
+%{--</div>--}%
 
-    %{--<div class="popupMultiRecordTemplate">--}%
-        %{--<span>Records: </span><a href="" class="viewAllRecords"><span class="recordCount">1,321</span></a><br/>--}%
-        %{--<span class="dataResource">Dummy resource</span><br/>--}%
-        %{--<span class="institution">Dummy institution</span><br/>--}%
-        %{--<span class="collection">Dummy collection</span><br/>--}%
-        %{--<span class="catalogueNumber">Dummy catalogue number</span><br/>--}%
-        %{--<a href="" class="viewRecord" >View this record</a><br/>--}%
-        %{--<a href="" class="viewAllRecords">View <span class="recordCount">1,321</span> records at this point</a>--}%
-    %{--</div>--}%
+%{--<div class="popupMultiRecordTemplate">--}%
+%{--<span>Records: </span><a href="" class="viewAllRecords"><span class="recordCount">1,321</span></a><br/>--}%
+%{--<span class="dataResource">Dummy resource</span><br/>--}%
+%{--<span class="institution">Dummy institution</span><br/>--}%
+%{--<span class="collection">Dummy collection</span><br/>--}%
+%{--<span class="catalogueNumber">Dummy catalogue number</span><br/>--}%
+%{--<a href="" class="viewRecord" >View this record</a><br/>--}%
+%{--<a href="" class="viewAllRecords">View <span class="recordCount">1,321</span> records at this point</a>--}%
+%{--</div>--}%
 %{--</div>--}%
 
 <style type="text/css">
-    /*#downloadMapForm { text-align:left; padding:0px; }*/
-    /*#downloadMapForm fieldset p { padding-top:9px; }*/
-    /*#downloadMapForm fieldset p input, #downloadMapForm fieldset p select { margin-left:15px; }*/
+/*#downloadMapForm { text-align:left; padding:0px; }*/
+/*#downloadMapForm fieldset p { padding-top:9px; }*/
+/*#downloadMapForm fieldset p input, #downloadMapForm fieldset p select { margin-left:15px; }*/
 </style>
 
 <div id="downloadMap" class="modal" tabindex="-1" role="dialog" aria-labelledby="downloadsMapLabel" aria-hidden="true">
@@ -1313,7 +1313,7 @@ a.colour-by-legend-toggle {
 
         var downloadUrl =  $('#mapDownloadUrl').val() +
                 '${raw(sr.urlParameters)}' +
-            //'&extents=' + '142,-45,151,-38' +  //need to retrieve the
+                    //'&extents=' + '142,-45,151,-38' +  //need to retrieve the
                 '&extents=' + extents +  //need to retrieve the
                 '&format=' + $('#format').val() +
                 '&dpi=' + $('#dpi').val() +

@@ -12,7 +12,7 @@
  *  implied. See the License for the specific language governing
  *  rights and limitations under the License.
  */
-
+//plop
 // Jquery Document.onLoad equivalent
 $(document).ready(function() {
     //alert("doc is loaded");
@@ -762,6 +762,7 @@ function removeFilter(el) {
  * Load all the charts
  */
 function loadAllCharts() {
+
     // set baseURls...
     baseFacetChart.biocacheServicesUrl = BC_CONF.biocacheServiceUrl;
     baseFacetChart.collectionsUrl = BC_CONF.collectoryUrl;
@@ -769,6 +770,7 @@ function loadAllCharts() {
     //console.log("Loading charts.....");
     var queryString = BC_CONF.searchString.replace("?q=","");
     var biocacheServiceUrl = BC_CONF.biocacheServiceUrl; //BC_CONF.biocacheServiceUrl, // "http://ala-macropus.it.csiro.au/biocache-service";
+    console.log(queryString);
 
     var taxonomyChartOptions = {
         query: queryString,
@@ -779,21 +781,21 @@ function loadAllCharts() {
     var facetChartOptions = {
         query: queryString,
         charts: ['collection_uid','state','species_group','assertions','type_status','ibra','state_conservation','month','occurrence_year'],
-        collection_uid: {title: 'By collection'},
-        state: {title: 'By state or territory'},
-        species_group: { title: 'By higher-level groups', ignore: ['Animals','Insects','Crustaceans','Angiosperms','Plants']},
+        collection_uid: {title: 'PAR COLLECTION'},
+        state: {title: 'PAR ETAT OU TERRITOIRE'},
+        species_group: { title: 'PAR NIVEAU TAXONOMIQUE SUPERIEUR', ignore: ['Animals','Insects','Crustaceans','Angiosperms','Plants']},
         assertions: {},
         type_status: {},
         ibra: {title: 'By IBRA region'},
         state_conservation: {},
-        occurrence_year:{},
+        occurrence_year:{title:"PAR DECADE"},
         Unknown_s:{},
-        month:{chartType: "column"},
+        month:{title: "PAR MOIS", chartType: "column"},
         biocacheServicesUrl: biocacheServiceUrl,
         displayRecordsUrl: BC_CONF.serverName
     };
 
-    if(dynamicFacets !== undefined){
+    if(dynamicFacets !== undefined && dynamicFacets.length >0){
         var chartsConfigUri = BC_CONF.biocacheServiceUrl + "/upload/charts/" + BC_CONF.selectedDataResource + ".json";
         $.getJSON(chartsConfigUri, function(chartsConfig) {
 
@@ -859,7 +861,7 @@ function loadImages(start) {
                 // detail metadata
                 var detailHtml = el.raw_scientificName;
                 if (el.typeStatus) detailHtml += br + 'Type: ' + el.typeStatus;
-                if (el.collector) detailHtml += br + 'By: ' + el.collector;
+                if (el.collector) detailHtml += br + 'Par: ' + el.collector;
                 if (el.eventDate) detailHtml += br + 'Date: ' + moment(el.eventDate).format('YYYY-MM-DD');
                 if (el.institutionName) {
                     detailHtml += br + el.institutionName;

@@ -200,7 +200,7 @@ a.colour-by-legend-toggle {
                             <g:if test="${facetResult.fieldName == 'uncertainty'}">${facetResult.fieldName = 'coordinate_uncertainty'}</g:if>
                             <g:if test="${facetResult.fieldResult.size() > 1}">
                                 <option value="${facetResult.fieldName}" ${Defaultselected}>
-                                    <alatag:formatDynamicFacetName fieldName="${facetResult.fieldName}"/>
+                                        <alatag:formatDynamicFacetName fieldName="Color by"/>
                                 </option>
                             </g:if>
                         </g:each>

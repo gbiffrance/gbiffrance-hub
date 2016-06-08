@@ -38,11 +38,14 @@ skin.includeBaseUrl = true
 //skin.headerUrl = "classpath:resources/generic-header.jsp" // can be external URL
 //skin.footerUrl = "classpath:resources/generic-footer.jsp" // can be external URL
 skin.fluidLayout = true // true or false
+skin.useAlaBie = false
 chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
 map.overlay.url = ""
 map.overlay.name = ""
-biocache.baseUrl="http://recherche-ws.gbif.fr"
+biocache.baseUrl="http://biocache.ala.org.au/ws/"
+gbif.baseUrl="http://api.gbif.org/v1/"
+bieService.baseUrl = "http://species-ws.als.scot"
 /******************************************************************************\
  *  MISC
 \******************************************************************************/
@@ -197,3 +200,14 @@ exploreYourArea.location = "Saulzais-le-Potier"
 map.mapbox.id = "nickdos.kf2g7gpb" // http://mapbox.com/ Registered by Nick - free to use so anyone can create a new one and add it here
 map.mapbox.token = "pk.eyJ1Ijoibmlja2RvcyIsImEiOiJ2V2dBdEg0In0.Ep2VyMOaOUnOwN1ZVa9uyQ"
 collections.baseUrl="http://metadonnee.gbif.fr"
+collectory.baseUrl="http://metadonnee.gbif.fr"
+
+
+
+facets.includeDynamicFacets = "false" // sandbox
+facets.limit = "100"
+facets.customOrder = ""
+facets.exclude = "dataHubUid,year,day,modified,left,right,provenance,taxonID,preferredFlag,outlierForLayers,speciesGroups,associatedMedia,images,userQualityAssertion,speciesHabitats,duplicationType,taxonomicIssues,subspeciesID,nameMatchMetric,sounds"
+facets.hide = "genus,order,class,phylum,kingdom,raw_taxon_name,rank,interaction,raw_state_conservation,biogeographic_region,year,institution_uid,collection_uid"
+facets.include = "establishment_means,user_assertions,assertion_user_id,name_match_metric,duplicate_type,alau_user_id,raw_datum,raw_sex,life_stage,elevation_d_rng,identified_by,species_subgroup,cl1048"
+facets.cached = "collection_uid,institution_uid,data_resource_uid,data_provider_uid,type_status,basis_of_record,species_group,loan_destination,establishment_means,state_conservation,state,cl1048,cl21,cl966,country,cl959"

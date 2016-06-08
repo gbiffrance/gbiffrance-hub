@@ -1,5 +1,5 @@
 
-<div id="facetWell" class="well well-sm">
+<div id="facetWell" class="well well-sm background-col">
     <g:set var="startTime" value="${System.currentTimeMillis()}"/>
     ${alatag.logMsg(msg:"Start of facets.gsp - " + startTime)}
     <h3 class="visible-xs">
@@ -7,7 +7,7 @@
             <alatag:message code="search.facets.heading" default="Affiner vos résultats"/></a>
     </h3>
     <div class="sidebar hidden-sm">
-        <h3 class="hidden-sm"><alatag:message code="search.facets.heading" default="Affiner vos résultats"/></h3>
+        <h3 class="hidden-sm" id="admin-h2"><alatag:message code="search.facets.heading" default="Affiner vos résultats"/></h3>
     </div>
     <div class="sidebar hidden-sm clear-both">
         <g:if test="${sr.query}">
@@ -60,11 +60,12 @@
                 </g:each>
             </div>
         </g:if>
+
         <g:each var="group" in="${groupedFacets}">
             <g:set var="keyCamelCase" value="${group.key.replaceAll(/\s+/,'')}"/>
             <div class="facetGroupName" id="heading_${keyCamelCase}">
                 <a href="#" class="showHideFacetGroup" data-name="${keyCamelCase}">
-                    <span class="caret black "></span> 
+                    <span class="caret black "></span>
                     <g:message code="facet.group.${group.key}" default="${group.key}"/>
                 </a>
             </div>
