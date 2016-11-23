@@ -1,5 +1,6 @@
 
 <div id="facetWell" class="well well-sm background-col">
+
     <g:set var="startTime" value="${System.currentTimeMillis()}"/>
     ${alatag.logMsg(msg:"Start of facets.gsp - " + startTime)}
     <h3 class="visible-xs">

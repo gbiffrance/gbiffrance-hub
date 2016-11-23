@@ -295,89 +295,89 @@
                 <ul id="userAnnotationsList" style="list-style: none; margin:0;"></ul>
             </div>
             <div id="dataQuality" class="additionalData"><a name="dataQualityReport"></a>
-                <h2 class="admin-h2"><g:message code="show.dataquality.title" default="Data quality tests"/></h2>
-                <div id="dataQualityModal" class="modal hide fade" tabindex="-1" role="dialog">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h3><g:message code="show.dataqualitymodal.title" default="Data Quality Details"/></h3>
-                    </div>
-                    <div class="modal-body">
-                        <p><g:message code="show.dataqualitymodal.body" default="loading"/>...</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal"><g:message code="show.dataqualitymodal.button" default="Close"/></button>
-                    </div>
-                </div>
-                <table class="dataQualityResults table-striped table-bordered table-condensed">
-                    <%--<caption>Details of tests that have been performed for this record.</caption>--%>
-                    <thead>
-                        <tr class="sectionName">
-                            <td class="dataQualityTestName"><g:message code="show.tabledataqualityresultscol01.title" default="Nom du test"/></td>
-                            <td class="dataQualityTestResult"><g:message code="show.tabledataqualityresultscol02.title" default="Résultat"/></td>
-                            <%--<th class="dataQualityMoreInfo">More information</th>--%>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <g:set var="testSet" value="${record.systemAssertions.failed}"/>
-                        <g:each in="${testSet}" var="test">
-                        <tr>
-                            <td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>
-                            <td><i class="glyphicon glyphicon-thumbs-down"></i> <g:message code="show.tabledataqualityresults.tr01td02" default="Échec"/></td>
-                            <%--<td>More info</td>--%>
-                        </tr>
-                        </g:each>
+                %{--<h2 class="admin-h2"><g:message code="show.dataquality.title" default="Data quality tests"/></h2>--}%
+                %{--<div id="dataQualityModal" class="modal hide fade" tabindex="-1" role="dialog">--}%
+                    %{--<div class="modal-header">--}%
+                        %{--<button type="button" class="close" data-dismiss="modal">×</button>--}%
+                        %{--<h3><g:message code="show.dataqualitymodal.title" default="Data Quality Details"/></h3>--}%
+                    %{--</div>--}%
+                    %{--<div class="modal-body">--}%
+                        %{--<p><g:message code="show.dataqualitymodal.body" default="loading"/>...</p>--}%
+                    %{--</div>--}%
+                    %{--<div class="modal-footer">--}%
+                        %{--<button class="btn" data-dismiss="modal"><g:message code="show.dataqualitymodal.button" default="Close"/></button>--}%
+                    %{--</div>--}%
+                %{--</div>--}%
+                %{--<table class="dataQualityResults table-striped table-bordered table-condensed">--}%
+                    %{--<%--<caption>Details of tests that have been performed for this record.</caption>--%>--}%
+                    %{--<thead>--}%
+                        %{--<tr class="sectionName">--}%
+                            %{--<td class="dataQualityTestName"><g:message code="show.tabledataqualityresultscol01.title" default="Nom du test"/></td>--}%
+                            %{--<td class="dataQualityTestResult"><g:message code="show.tabledataqualityresultscol02.title" default="Résultat"/></td>--}%
+                            %{--<%--<th class="dataQualityMoreInfo">More information</th>--%>--}%
+                        %{--</tr>--}%
+                    %{--</thead>--}%
+                    %{--<tbody>--}%
+                        %{--<g:set var="testSet" value="${record.systemAssertions.failed}"/>--}%
+                        %{--<g:each in="${testSet}" var="test">--}%
+                        %{--<tr>--}%
+                            %{--<td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>--}%
+                            %{--<td><i class="glyphicon glyphicon-thumbs-down"></i> <g:message code="show.tabledataqualityresults.tr01td02" default="Échec"/></td>--}%
+                            %{--<%--<td>More info</td>--%>--}%
+                        %{--</tr>--}%
+                        %{--</g:each>--}%
 
-                        <g:set var="testSet" value="${record.systemAssertions.warning}"/>
-                        <g:each in="${testSet}" var="test">
-                        <tr>
-                            <td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>
-                            <td><i class="glyphicon glyphicon-alert"></i> <g:message code="show.tabledataqualityresults.tr02td02" default="Avertissement"/></td>
-                            <%--<td>More info</td>--%>
-                        </tr>
-                        </g:each>
+                        %{--<g:set var="testSet" value="${record.systemAssertions.warning}"/>--}%
+                        %{--<g:each in="${testSet}" var="test">--}%
+                        %{--<tr>--}%
+                            %{--<td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>--}%
+                            %{--<td><i class="glyphicon glyphicon-alert"></i> <g:message code="show.tabledataqualityresults.tr02td02" default="Avertissement"/></td>--}%
+                            %{--<%--<td>More info</td>--%>--}%
+                        %{--</tr>--}%
+                        %{--</g:each>--}%
 
-                        <g:set var="testSet" value="${record.systemAssertions.passed}"/>
-                        <g:each in="${testSet}" var="test">
-                        <tr>
-                            <td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>
-                            <td><i class="glyphicon glyphicon-thumbs-up "></i> <g:message code="show.tabledataqualityresults.tr03td02" default="Validé"/></td>
-                            <%--<td>More info</td>--%>
-                        </tr>
-                        </g:each>
+                        %{--<g:set var="testSet" value="${record.systemAssertions.passed}"/>--}%
+                        %{--<g:each in="${testSet}" var="test">--}%
+                        %{--<tr>--}%
+                            %{--<td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>--}%
+                            %{--<td><i class="glyphicon glyphicon-thumbs-up "></i> <g:message code="show.tabledataqualityresults.tr03td02" default="Validé"/></td>--}%
+                            %{--<%--<td>More info</td>--%>--}%
+                        %{--</tr>--}%
+                        %{--</g:each>--}%
 
-                        <g:if test="${record.systemAssertions.missing}">
-                            <tr>
-                                <td colspan="2">
-                                <a href="javascript:void(0)" id="showMissingPropResult"><g:message code="show.tabledataqualityresults.tr04td02" default="Show/Hide"/>  ${record.systemAssertions.missing.length()} missing properties</a>
-                                </td>
-                            </tr>
-                        </g:if>
-                        <g:set var="testSet" value="${record.systemAssertions.missing}"/>
-                        <g:each in="${testSet}" var="test">
-                        <tr class="missingPropResult" style="display:none;">
-                            <td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>
-                            <td><i class=" icon-question-sign"></i> <g:message code="show.tabledataqualityresults.tr05td02" default="Missing"/></td>
-                        </tr>
-                        </g:each>
+                        %{--<g:if test="${record.systemAssertions.missing}">--}%
+                            %{--<tr>--}%
+                                %{--<td colspan="2">--}%
+                                %{--<a href="javascript:void(0)" id="showMissingPropResult"><g:message code="show.tabledataqualityresults.tr04td02" default="Show/Hide"/>  ${record.systemAssertions.missing.length()} missing properties</a>--}%
+                                %{--</td>--}%
+                            %{--</tr>--}%
+                        %{--</g:if>--}%
+                        %{--<g:set var="testSet" value="${record.systemAssertions.missing}"/>--}%
+                        %{--<g:each in="${testSet}" var="test">--}%
+                        %{--<tr class="missingPropResult" style="display:none;">--}%
+                            %{--<td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>--}%
+                            %{--<td><i class=" icon-question-sign"></i> <g:message code="show.tabledataqualityresults.tr05td02" default="Missing"/></td>--}%
+                        %{--</tr>--}%
+                        %{--</g:each>--}%
 
-                        <g:if test="${record.systemAssertions.unchecked}">
-                            <tr>
-                                <td colspan="2">
-                                <a href="javascript:void(0)" id="showUncheckedTests"><g:message code="show.tabledataqualityresults.tr06td02" default="Show/Hide"/>  ${record.systemAssertions.unchecked.length()} tests that havent been ran</a>
-                                </td>
-                            </tr>
-                        </g:if>
-                        <g:set var="testSet" value="${record.systemAssertions.unchecked}"/>
-                        <g:each in="${testSet}" var="test">
-                        <tr class="uncheckTestResult" style="display:none;">
-                            <td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>
-                            <td><g:message code="show.tabledataqualityresults.tr07td02" default="Unchecked (lack of data)"/></td>
-                        </tr>
-                        </g:each>
+                        %{--<g:if test="${record.systemAssertions.unchecked}">--}%
+                            %{--<tr>--}%
+                                %{--<td colspan="2">--}%
+                                %{--<a href="javascript:void(0)" id="showUncheckedTests"><g:message code="show.tabledataqualityresults.tr06td02" default="Show/Hide"/>  ${record.systemAssertions.unchecked.length()} tests that havent been ran</a>--}%
+                                %{--</td>--}%
+                            %{--</tr>--}%
+                        %{--</g:if>--}%
+                        %{--<g:set var="testSet" value="${record.systemAssertions.unchecked}"/>--}%
+                        %{--<g:each in="${testSet}" var="test">--}%
+                        %{--<tr class="uncheckTestResult" style="display:none;">--}%
+                            %{--<td><g:message code="${test.name}" default="${test.name}"/><alatag:dataQualityHelp code="${test.code}"/></td>--}%
+                            %{--<td><g:message code="show.tabledataqualityresults.tr07td02" default="Unchecked (lack of data)"/></td>--}%
+                        %{--</tr>--}%
+                        %{--</g:each>--}%
 
-                    </tbody>
-                </table>
-            </div>
+                    %{--</tbody>--}%
+                %{--</table>--}%
+            %{--</div>--}%
 
             <div id="outlierFeedback">
                 <g:if test="${record.processed.occurrence.outlierForLayers}">

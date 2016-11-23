@@ -4,9 +4,15 @@ body{
 	line-height: 1.428;
 }
 
+
+.contenu_total{
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
 #main-content{
-	width: 1170px;
 	padding: 10px 10px 10px 10px;
+
 }
 
 .clear-both{
@@ -217,11 +223,40 @@ ul.nav ul > li {
 }
 
 .nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar-header .dropdown-menu {
-    margin-top: 1%;
+    margin-top: 5%;
+}
+
+.navbar-header .dropdown-menu li a:hover {
+    color: #000000;
+}
+
+a:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-submenu:hover>a, .dropdown-submenu:focus>a, .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+    background: none;
+    color: #CB3B59;
+}
+
+.navbar-header .nav li.dropdown.open>.dropdown-toggle .caret,
+.navbar-header .nav li.dropdown.active>.dropdown-toggle .caret,
+.navbar-header .nav li.dropdown.open.active>.dropdown-toggle .caret,
+.navbar-header .nav li.dropdown>a:hover .caret,
+.navbar-header .nav li.dropdown>a:focus .caret,
+.caret {
+    border-bottom-color:#FFFFFF;
+    border-top-color:#FFFFFF;
 }
 
 .navbar-header .dropdown-menu {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-header .dropdown-menu li a:hover:before {
+    content:" » ";
 }
 
 .navbar-header .block-menu-block {
@@ -927,7 +962,14 @@ div .recordHeader{
     border-bottom: none;
 }
 
+#searchControls{
+    margin-left:0px;
+}
+
 @media (min-width: 768px){
+    .container{
+        width: 96%;
+    }
     .col-sm-8 {
         width: 66.66666667%;
     }
@@ -1016,9 +1058,9 @@ div .recordHeader{
 @media screen and (min-width: 1300px){
     header {
         margin-top: 0.85%;
-        margin-left: auto;
-        margin-right: auto;
-        width: 1170px;
+        /*margin-left: auto;*/
+        /*margin-right: auto;*/
+        /*width: 1170px;*/
         height: 160px;
     }
 
@@ -1026,31 +1068,28 @@ div .recordHeader{
         width: 70%;
     }
 
-    .navbar-header {
-        padding: 0%;
-    }
-
-    #footer {
+    /*.navbar-header {*/
+        /*padding: 0%;*/
+    /*}*/
+    .contenu_total{
+        width: 1170px;
+        padding: 10px 10px 10px 10px;
         margin-left: auto;
         margin-right: auto;
-        width: 1170px;
     }
 
     .region-footer {
-        width: 100%;
-    }
-
-    .format {
         margin-left: auto;
         margin-right: auto;
-        width: 1170px;
+        /*width: 1170px;*/
     }
 
-    .container{
-        width: 1170px;
-        margin-left:auto;
-        margin-right:auto;
+    .region-footer {
+        /*width: 100%;*/
     }
+
+
+
 }
 
 .sidebar{

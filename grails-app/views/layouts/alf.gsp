@@ -65,6 +65,7 @@
 <body class="${pageProperty(name:'body.class')?:'nav-collections'}" id="${pageProperty(name:'body.id')}" onload="${pageProperty(name:'body.onload')}">
 <g:set var="fluidLayout" value="${grailsApplication.config.skin.fluidLayout?.toBoolean()}"/>
 
+<div class="contenu_total">
 <header class="${fluidLayout?'row-fluid':'container'}">
     <a href="http://www.gbif.fr"><img src="/images/header_gbif_site.png" alt="Le GBIF France"></a>
 </header>
@@ -83,6 +84,8 @@
                             <li><a href="http://www.gbif.fr/page/infos/actions-du-point-nodal">Actions du point nodal</a></li>
                             <li><a href="http://www.gbif.fr/actualites">Actualit&eacutes</a></li>
                             <li><a href="http://www.gbif.fr/agenda">Agenda</a></li>
+                            <li><a href="http://www.gbif.fr/page/infos/foire-aux-questions">Foire aux Questions</a></li>
+                            <li><a href="http://www.gbif.fr/newsletter/subscriptions">Inscriptions aux Newsletters</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -128,6 +131,7 @@
                             <li><a href="http://www.gbif.fr/page/ressources/posters">Posters</a></li>
                             <li><a href="http://www.gbif.fr/page/ressources/liens">Sites Internet utiles</a></li>
                             <li><a href="http://www.gbif.fr/page/ressources/outils-du-gbif">Outils du GBIF</a></li>
+                            <li><a href="http://www.gbif.fr/page/ressources/publication-du-gbif-en-anglais">Publication</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -399,7 +403,7 @@
              </div>
         </div>
     </div>
-
+</div>
 <!-- JS resources-->
 <r:layoutResources/>
 </body>

@@ -285,9 +285,9 @@
                         %{--<g:if test="${showSpeciesImages}">--}%
                             %{--<li><a id="t4" href="#speciesImages" data-toggle="tab"><g:message code="list.link.t4" default="Species images"/></a></li>--}%
                         %{--</g:if>--}%
-                        %{--<g:if test="${hasImages}">--}%
-                            %{--<li><a id="t5" href="#recordImages" data-toggle="tab"><g:message code="list.link.t5" default="Record images"/></a></li>--}%
-                        %{--</g:if>--}%
+                        <g:if test="${hasImages}">
+                            <li><a id="t5" href="#recordImages" data-toggle="tab"><g:message code="list.link.t5" default="Record images"/></a></li>
+                        </g:if>
                     </ul>
                 </div>
                 <div class="tab-content clearfix">
@@ -370,7 +370,6 @@
                         <div id="charts" class="row"></div>
                     </div><!-- end #chartsWrapper -->
 
-
                     %{--<g:if test="${showSpeciesImages}">--}%
                         %{--<div id="speciesImages" class="tab-pane">--}%
                             %{--<h3><g:message code="list.speciesimages.title" default="Representative images of species"/></h3>--}%
@@ -394,30 +393,30 @@
                             %{--</div>--}%
                         %{--</div><!-- end #speciesWrapper -->--}%
                     %{--</g:if>--}%
-                    %{--<g:if test="${hasImages}">--}%
-                        %{--<div id="recordImages" class="tab-pane">--}%
-                            %{--<h3><g:message code="list.speciesgallerycontrols.recordimages.title" default="Images from occurrence records"/></h3>--}%
-                            %{--<%--<p>(see also <a href="#tab_speciesImages">representative species images</a>)</p>--%>--}%
-                            %{--<div id="imagesGrid">--}%
-                            %{--<g:message code="list.speciesgallerycontrols.imagesgrid" default="loading images"/>...--}%
-                            %{--</div>--}%
-                            %{--<div id="loadMoreImages" style="display:none;">--}%
-                                %{--<button class="btn"><g:message code="list.speciesgallerycontrols.loadmoreimages.button" default="Show more images"/>--}%
-                                    %{--<img style="display:none;" src="${request.contextPath}/images/indicator.gif"/>--}%
-                                %{--</button>--}%
-                            %{--</div>--}%
-                            %{--<%-- HTML template used by AJAX code --%>--}%
-                            %{--<div class="imgConTmpl hide">--}%
-                                %{--<div class="imgCon">--}%
-                                    %{--<a class="cbLink" rel="thumbs" href="" id="thumb">--}%
-                                        %{--<img src="" alt="${tc?.taxonConcept?.nameString} image thumbnail"/>--}%
-                                        %{--<div class="meta brief"></div>--}%
-                                        %{--<div class="meta detail hide"></div>--}%
-                                    %{--</a>--}%
-                                %{--</div>--}%
-                            %{--</div>--}%
-                        %{--</div><!-- end #imagesWrapper -->--}%
-                    %{--</g:if>--}%
+                    <g:if test="${hasImages}">
+                        <div id="recordImages" class="tab-pane">
+                            <h3><g:message code="list.speciesgallerycontrols.recordimages.title" default="Images from occurrence records"/></h3>
+                            <%--<p>(see also <a href="#tab_speciesImages">representative species images</a>)</p>--%>
+                            <div id="imagesGrid">
+                            <g:message code="list.speciesgallerycontrols.imagesgrid" default="loading images"/>...
+                            </div>
+                            <div id="loadMoreImages" style="display:none;">
+                                <button class="btn"><g:message code="list.speciesgallerycontrols.loadmoreimages.button" default="Show more images"/>
+                                    <img style="display:none;" src="${request.contextPath}/images/indicator.gif"/>
+                                </button>
+                            </div>
+                            <%-- HTML template used by AJAX code --%>
+                            <div class="imgConTmpl hide">
+                                <div class="imgCon">
+                                    <a class="cbLink" rel="thumbs" href="" id="thumb">
+                                        <img src="" alt="${tc?.taxonConcept?.nameString} image thumbnail"/>
+                                        <div class="meta brief"></div>
+                                        <div class="meta detail hide"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div><!-- end #imagesWrapper -->
+                    </g:if>
                 </div><!-- end .css-panes -->
                 <form name="raw_taxon_search" class="rawTaxonSearch" id="rawTaxonSearchForm" action="${request.contextPath}/occurrences/search/taxa" method="POST">
                         <%-- taxon concept search drop-down div are put in here via Jquery --%>

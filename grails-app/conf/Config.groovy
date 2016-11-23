@@ -43,7 +43,7 @@ chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
 map.overlay.url = ""
 map.overlay.name = ""
-biocache.baseUrl="http://biocache.ala.org.au/ws/"
+biocache.baseUrl="http://recherche-ws.gbif.fr"
 gbif.baseUrl="http://api.gbif.org/v1/"
 bieService.baseUrl = "http://species-ws.als.scot"
 /******************************************************************************\
@@ -73,8 +73,8 @@ grails.mime.types = [ // the first one is the default format
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/bootstrap3/css/*', '/bootstrap3/js/*', '/bootstrap3/fonts/*']
-grails.resources.adhoc.includes = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/bootstrap3/css/**', '/bootstrap3/js/**', '/bootstrap3/fonts/**']
+grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/bootstrap3/fonts/*', '/bootstrap3/css/*', '/bootstrap3/js/*', '/bootstrap3/fonts/*']
+grails.resources.adhoc.includes = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/bootstrap3/fonts/**', '/bootstrap3/css/**', '/bootstrap3/js/**', '/bootstrap3/fonts/**']
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
@@ -122,6 +122,8 @@ grails.exceptionresolver.params.exclude = ['password']
 
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
+
+config.security.cas.bypass=true
 
 environments {
     development {

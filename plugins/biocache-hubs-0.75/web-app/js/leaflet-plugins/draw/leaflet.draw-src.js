@@ -83,9 +83,9 @@ L.drawLocal = {
 			},
 			buttons: {
 				edit: 'Edit layers.',
-				editDisabled: 'Aucune couche à modifier.',
+				editDisabled: 'No layers to edit.',
 				remove: 'Delete layers.',
-				removeDisabled: 'Aucune couche à supprimer.'
+				removeDisabled: 'No layers to delete.'
 			}
 		},
 		handlers: {
