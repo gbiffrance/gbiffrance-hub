@@ -150,6 +150,7 @@
 
 </head>
 <body>
+//plopplop
 
 
     <g:set var="json" value="${request.contextPath}/occurrences/${record?.raw?.uuid}.json" />
