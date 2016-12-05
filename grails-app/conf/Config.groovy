@@ -46,6 +46,25 @@ map.overlay.name = ""
 biocache.baseUrl="http://recherche-ws.gbif.fr"
 gbif.baseUrl="http://api.gbif.org/v1/"
 bieService.baseUrl = "http://species-ws.als.scot"
+
+security.cas.appServerName = "http://dev.ala.org.au:8080"
+security.cas.casServerName = 'https://auth.ala.org.au'
+security.cas.uriFilterPattern = '/admin, /admin/.*'
+security.cas.authenticateOnlyIfLoggedInPattern = "/occurrences/(?!.+userAssertions|facet.+).+,/explore/your-area"
+security.cas.uriExclusionFilterPattern = '/images.*,/css.*,/js.*'
+security.cas.loginUrl = 'https://auth.ala.org.au/cas/login'
+security.cas.logoutUrl = 'https://auth.ala.org.au/cas/logout'
+security.cas.casServerUrlPrefix = 'https://auth.ala.org.au/cas'
+security.cas.bypass = true // set to true for non-ALA deployment
+security.cas.contextPath = "/generic-biocache-hub" //"/${appName}"
+security.cas.debugWebXml = true
+auth.admin_role = "ROLE_ADMIN"
+serverName = 'http://recherche.gbif.fr'
+
+//google.apikey="AIzaSyChkXK3jiqqd-54Q_Ii8y03ELOq5jReE24"
+
+useDownloadPlugin="false"
+
 /******************************************************************************\
  *  MISC
 \******************************************************************************/

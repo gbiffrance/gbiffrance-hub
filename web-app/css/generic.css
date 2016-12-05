@@ -907,6 +907,7 @@ div .recordHeader{
     text-transform: uppercase;
     font-weight: 400;
     font-size: 12px;
+    text-decoration: none;
 }
 
 .FieldName, .facetGroupName{

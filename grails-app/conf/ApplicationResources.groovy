@@ -11,7 +11,7 @@ modules = {
     // }
 
     alf {
-        dependsOn 'bootstrap3', 'hubCore' //
+        dependsOn 'bootstrap', 'hubCore' //
         resource url: [dir:'css', file:'generic.css']
         resource url: [dir:'images', file:'header_gbif_site.png']
         resource url: [dir:'images', file:'rss.png']
@@ -24,7 +24,7 @@ modules = {
         resource url: [dir:'images', file:'logo-gbif.jpg']
     }
 
-    bootstrap3 {
+    bootstrap {
         resource url: [dir: 'bootstrap3/js', file: 'bootstrap.js', disposition: 'head']
         resource url: [dir: 'bootstrap3/css', file: 'bootstrap.css', attrs: [media: 'screen, projection, print']]
         resource url: [dir: 'bootstrap3/css', file: 'bootstrap-theme.css', attrs: [media: 'screen, projection, print']]
@@ -67,10 +67,12 @@ modules = {
         resource url:[dir:'css', file:'font-awesome.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
     }
 
-//    gbifAutocomplete {
-//        dependsOn 'jquery'
-//        //defaultBundle 'main-core'
-//        resource url: [dir:'js', file:'gbifAutocomplete.js'], disposition: 'head'
-//    }
+    gbifAutocomplete {
+        dependsOn 'jquery'
+        //defaultBundle 'main-core'
+        resource url: [dir:'js', file:'gbifAutocomplete.js'], disposition: 'head'
+    }
+
+
 
 }

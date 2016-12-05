@@ -101,7 +101,7 @@
         }
     </style>
     <script src="http://maps.google.com/maps/api/js?v=3.5&sensor=false"></script>
-    <r:require modules="jquery, leaflet, mapCommon, bootstrap3, alf, searchMap, bootstrapCombobox, bieAutocomplete"/>
+    <r:require modules="jquery, leaflet, mapCommon, bootstrap, alf, searchMap, bootstrapCombobox, bieAutocomplete"/>
     <g:if test="${grailsApplication.config.skin.useAlaBie?.toBoolean()}">
         <r:require module="bieAutocomplete"/>
     </g:if>

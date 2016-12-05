@@ -536,8 +536,15 @@ $(document).ready(function() {
     $('.showHideFacetGroup').click(function(e) {
         e.preventDefault();
         var name = $(this).data('name');
-        //console.log('search-facets-state-' + name + '=')
+        console.error('search-facets-state-' + name + '=');
         $(this).find('span').toggleClass('right-caret');
+        if($('#group_' + name).is(":hidden")){
+            $('#group_' + name).removeClass("hide");
+            $('#group_' + name).addClass("show");
+        }else{
+            $('#group_' + name).removeClass("show");
+            $('#group_' + name).addClass("hide");
+        }
         $('#group_' + name).slideToggle(600, function() {
             //console.log('showHideFacetGroup',name);
             if ($('#group_' + name).is(":visible") ) {

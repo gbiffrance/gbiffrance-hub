@@ -41,9 +41,7 @@
             </div>
             <div class="facetsGroup hide" id="group_dynamicFacets">
                 <g:each in="${dynamicFacets}" var="df">
-                    %{--${df.name}<br>--}%
                     <g:set var="facetResult" value="${groupedFacetsMap.get(df.name)}"/>
-                    %{--<g:if test="${facetResult}">facetResult = ${facetResult}<br></g:if>--}%
                     <g:if test="${facetResult && facetResult.fieldResult.length() >= 1 && facetResult.fieldResult[0].count != sr.totalRecords && ! sr.activeFacetMap?.containsKey(facetResult.fieldName ) }">
                         <g:set var="fieldDisplayName" value="${df.displayName}"/>
                         <h4><span class="FieldName">${fieldDisplayName?:alatag.formatDynamicFacetName(fieldName:facetResult.fieldName)}</span></h4>
@@ -66,11 +64,11 @@
             <g:set var="keyCamelCase" value="${group.key.replaceAll(/\s+/,'')}"/>
             <div class="facetGroupName" id="heading_${keyCamelCase}">
                 <a href="#" class="showHideFacetGroup" data-name="${keyCamelCase}">
-                    <span class="caret black "></span>
+                    <span class="right-caret caret black "></span>
                     <g:message code="facet.group.${group.key}" default="${group.key}"/>
                 </a>
             </div>
-            <div class="facetsGroup" id="group_${keyCamelCase}">
+            <div class="facetsGroup hide" id="group_${keyCamelCase}">
                 <g:set var="firstGroup" value="${false}"/>
                 <g:each in="${group.value}" var="facetFromGroup">
                     <%--  Do a lookup on groupedFacetsMap for the current facet --%>
@@ -98,61 +96,65 @@
 </div><!--end facets-->
 <!-- modal popup for "choose more" link -->
 <div id="multipleFacets" class="modal" tabindex="-1" role="dialog" aria-labelledby="multipleFacetsLabel" aria-hidden="true"><!-- BS modal div -->
-    <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="multipleFacetsLabel"><g:message code="facets.multiplefacets.title" default="Affiner votre recherche"/></h3>
-        <div id="dynamic" class="tableContainer">
-            <form name="facetRefineForm" id="facetRefineForm" method="GET" action="/occurrences/search/facets">
-                <table class="table table-bordered table-condensed table-striped scrollTable" id="fullFacets">
-                    <thead class="fixedHeader">
-                        <tr class="tableHead">
-                            <th>&nbsp;</th>
-                            <th id="indexCol" width="80%"><a href="#index" class="fsort" data-sort="index" data-foffset="0"></a></th>
-                            <th style="border-right-style: none;text-align: right;"><a href="#count" class="fsort" data-sort="count" data-foffset="0" title="Sort by record count"><g:message code="facets.multiplefacets.tableth01" default="Count"/></a></th>
-                        </tr>
-                    </thead>
-                    <tbody class="scrollContent">
-                        <tr class="hide">
-                            <td><input type="checkbox" name="fqs" class="fqs" value=""></td>
-                            <td><a href=""></a></td>
-                            <td style="text-align: right; border-right-style: none;"></td>
-                        </tr>
-                        <tr id="spinnerRow">
-                            <td colspan="3" style="text-align: center;"><g:message code="facets.multiplefacets.tabletr01td01" default="loading data"/>... <g:img plugin="biocache-hubs" dir="images" file="spinner.gif" id="spinner2" class="spinner" alt="spinner icon"/></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
-        </div>
-        <div id='submitFacets' class="" style="text-align: left;">
-            <div class="btn-group">
-                <button type='submit' class='submit btn btn-small' id="include"><g:message code="facets.includeSelected.button" default="INCLURE les éléments sélectionnés"/></button>
-                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret black"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <!-- dropdown menu links -->
-                    <li>
-                        <a href="#" class="wildcard" id="includeAll"><g:message code="facets.submitfacets.li01" default="INCLURE toutes les valeurs (y compris les caractères de remplacement)"/></a>
-                    </li>
-                </ul>
+     <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+                <h2 id="multipleFacetsLabel" class="admin-h2"><g:message code="facets.multiplefacets.title" default="Affiner votre recherche"/></h2>
             </div>
-            &nbsp;
-            <div class="btn-group">
-                <button type='submit' class='submit btn btn-small' id="exclude" ><g:message code="facets.excludeSelected.button" default="EXCLURE les éléments sélectionnés"/></button>
-                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret black"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <!-- dropdown menu links -->
-                    <li>
-                        <a href="#" class="wildcard" id="excludeAll"><g:message code="facets.submitfacets.li02" default="EXCLURE toutes les valeurs (sauf les caractères de remplacement)"/></a>
-                    </li>
-                </ul>
+            <div class="modal-body">
+                <div id="dynamic" class="tableContainer">
+                    <form name="facetRefineForm" id="facetRefineForm" method="GET" action="/occurrences/search/facets">
+                        <table class="table table-bordered table-condensed table-striped scrollTable" id="fullFacets">
+                            <thead class="fixedHeader">
+                                <tr class="tableHead">
+                                    <th>&nbsp;</th>
+                                    <th id="indexCol" width="80%"><a href="#index" class="fsort" data-sort="index" data-foffset="0"></a></th>
+                                    <th style="border-right-style: none;text-align: right;"><a href="#count" class="fsort" data-sort="count" data-foffset="0" title="Sort by record count"><g:message code="facets.multiplefacets.tableth01" default="Count"/></a></th>
+                                </tr>
+                            </thead>
+                            <tbody class="scrollContent">
+                                <tr class="hide">
+                                    <td><input type="checkbox" name="fqs" class="fqs" value=""></td>
+                                    <td><a href=""></a></td>
+                                    <td style="text-align: right; border-right-style: none;"></td>
+                                </tr>
+                                <tr id="spinnerRow">
+                                    <td colspan="3" style="text-align: center;"><g:message code="facets.multiplefacets.tabletr01td01" default="loading data"/>... <g:img plugin="biocache-hubs" dir="images" file="spinner.gif" id="spinner2" class="spinner" alt="spinner icon"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <div id='submitFacets' class="" style="text-align: left;">
+                    <div class="btn-group">
+                        <button type='submit' class='submit btn btn-default access-data' id="include"><g:message code="facets.includeSelected.button" default="INCLURE les éléments sélectionnés"/></button>
+                        <button class="btn btn-default access-data dropdown-toggle" data-toggle="dropdown"><span class="caret black"></span></button>
+                        <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            <li>
+                                <a href="#" class="wildcard" id="includeAll"><g:message code="facets.submitfacets.li01" default="INCLURE toutes les valeurs (y compris les caractères de remplacement)"/></a>
+                            </li>
+                        </ul>
+                    </div>
+                    &nbsp;
+                    <div class="btn-group">
+                        <button type='submit' class='submit btn btn-default access-data' id="exclude" ><g:message code="facets.excludeSelected.button" default="EXCLURE les éléments sélectionnés"/></button>
+                        <button class="btn btn-default access-data dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret black"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            <li>
+                                <a href="#" class="wildcard" id="excludeAll"><g:message code="facets.submitfacets.li02" default="EXCLURE toutes les valeurs (sauf les caractères de remplacement)"/></a>
+                            </li>
+                        </ul>
+                    </div>
+                    &nbsp;
+                    <a href="#" id="downloadFacet" class="btn btn-default access-data" title="${g.message(code:'facets.downloadfacets.button', default:'Télécharger cette liste')}"><i class="glyphicon glyphicon-save" title="${g.message(code:'facets.downloadfacets.button', default:'Download this list')}"></i> <span class="hide"><g:message code="facets.downloadfacets.button" default="Download"/></span></a>
+                    <button class="btn btn-default access-data" data-dismiss="modal" aria-hidden="true" style="float:right;"><g:message code="facets.submitfacets.button" default="Fermer"/></button>
+                </div>
             </div>
-            &nbsp;
-            <a href="#" id="downloadFacet" class="btn btn-sm" title="${g.message(code:'facets.downloadfacets.button', default:'Télécharger cette liste')}"><i class="glyphicon glyphicon-save" title="${g.message(code:'facets.downloadfacets.button', default:'Download this list')}"></i> <span class="hide"><g:message code="facets.downloadfacets.button" default="Download"/></span></a>
-            <button class="btn btn-small" data-dismiss="modal" aria-hidden="true" style="float:right;"><g:message code="facets.submitfacets.button" default="Fermer"/></button>
         </div>
     </div>
 </div>
