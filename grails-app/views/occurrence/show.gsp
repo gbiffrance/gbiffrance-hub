@@ -49,8 +49,11 @@
         }
 
         // Google charts
-        google.load('maps','3.3',{ other_params: "sensor=false" });
-        google.load("visualization", "1", {packages:["corechart"]});
+//        google.load('maps','3.3',{ other_params: "sensor=false" });
+//        google.load("visualization", "1", {packages:["corechart"]});
+        if(!OCC_REC.hasGoogleKey) {
+            google.load('maps', '3.3', {other_params: "sensor=false"});
+        }
     </script>
     <style type="text/css">
         #expertDistroMap img {  max-width: none; }

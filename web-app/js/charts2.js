@@ -551,7 +551,7 @@ var facetChartGroup = {
             facetNames = dataOptions.facets;
         }
 
-        return '&facets=' + facetNames.join('&facets=');
+        return '&facets=' + facetNames.join(',');
     },
     // create a set of facets charts - requesting the data
     loadAndDrawFacetCharts: function (options) {
@@ -574,6 +574,7 @@ var facetChartGroup = {
         // show a message while requesting data
         chartsDiv.append($("<span>Loading charts...</span>"));
 
+        var chartUrl = urlConcat(url, "/occurrences/search.json?pageSize=0&flimit=1000&") + options.query + facets + "&fsort=index";
         // make request
         $.ajax({
             url: urlConcat(url, "/occurrences/search.json?pageSize=0&flimit=200&q=") + options.query + facets + "&fsort=index",
@@ -638,7 +639,7 @@ var loadAndDrawFacetCharts = function (options) {
     var url = (options.biocacheServicesUrl == undefined) ? baseFacetChart.biocacheServicesUrl : options.biocacheServicesUrl,
 
     // build the required facet set
-        facets = options.charts.join('&facets='),
+        facets = "&facets=" + options.charts.join(','),
 
     // calc the target div
         chartsDiv = $('#' + (options.chartsDiv ? options.chartsDiv : baseFacetChart.chartsDiv));
@@ -646,9 +647,12 @@ var loadAndDrawFacetCharts = function (options) {
     // show a message while requesting data
     chartsDiv.append($("<span>Loading charts...</span>"));
 
+    var url = urlConcat(url, "/occurrences/search.json?pageSize=0&flimit=-1&") + options.query + facets + "&fsort=index";
+
     // make request
     $.ajax({
-        url: urlConcat(url, "/occurrences/search.json?pageSize=0&q=") + options.query + "&facets=" + facets + "&fsort=index",
+       // url: urlConcat(url, "/occurrences/search.json?pageSize=0&q=") + options.query + "&facets=" + facets + "&fsort=index",
+        url: chartUrl,
         dataType: 'jsonp',
         error: function() {
             cleanUp(); // TODO:
@@ -911,8 +915,8 @@ function buildGenericFacetChart(name, data, query, chartsDiv, chartOptions) {
             }
 
             // show the records
-            document.location = urlConcat(biocacheWebappUrl,"/occurrences/search?q=") + query +
-                "&fq=" + facetQuery ;
+            document.location = urlConcat(biocacheWebappUrl,"/occurrences/search?") + query +
+                "&fq=" + facetQuery;
         });
     }
 }
@@ -942,6 +946,17 @@ function transformMonthData(data) {
         obj.formattedLabel = months[monthIdx - 1];
     });
     return data;
+}
+
+function mapMonthQuery(month) {
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var queryValue = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+    var idx = months.indexOf(month);
+    if(idx > 0){
+        return "month:" + queryValue[idx];
+    } else {
+        return '-month:[* TO *]';
+    }
 }
 
 function transformFqData(data) {
@@ -1059,7 +1074,7 @@ var taxonomyChart = {
             this.threshold = chartOptions.threshold;
         }
 
-        var url = urlConcat(biocacheServicesUrl, "/breakdown.json?q=") + this.query;
+        var url = urlConcat(biocacheServicesUrl, "/breakdown.json?") + this.query;
 
         // add url params to set state
         if (this.rank) {
@@ -1251,7 +1266,7 @@ var taxonomyChart = {
                 /* SHOW RECORDS */
                 else if (clickThru) {
                     // show occurrence records
-                    document.location = urlConcat(biocacheWebappUrl, "/occurrences/search?q=") + query +
+                    document.location = urlConcat(biocacheWebappUrl, "/occurrences/search?") + query +
                         "&fq=" + data.rank + ":" + name;
                 }
             });
@@ -1263,7 +1278,7 @@ var taxonomyChart = {
         if (this.rank != undefined && this.name != undefined) {
             fq = "&fq=" + this.rank + ":" + this.name;
         }
-        document.location = urlConcat(biocacheWebappUrl, "/occurrences/search?q=") +
+        document.location = urlConcat(biocacheWebappUrl, "/occurrences/search?") +
             this.query + fq;
     },
     reset: function () {
@@ -1335,7 +1350,7 @@ function initTaxonTree(treeOptions) {
                 ajax: {
                     url: function(node) {
                         var rank = $(node).attr("rank");
-                        var u = urlConcat(biocacheServicesUrl, "/breakdown.json?q=") + query + "&rank=";
+                        var u = urlConcat(biocacheServicesUrl, "/breakdown.json?") + query + "&rank=";
                         if (rank == 'kingdoms') {
                             u += 'kingdom';  // starting node
                         }
@@ -1390,7 +1405,7 @@ function showRecords(node, query) {
     if (rank == 'kingdoms') return;
     var name = node.attr('id');
     // url for records list
-    var recordsUrl = urlConcat(biocacheWebappUrl, "/occurrences/search?q=") + query +
+    var recordsUrl = urlConcat(biocacheWebappUrl, "/occurrences/search?") + query +
         "&fq=" + rank + ":" + name;
     document.location.href = recordsUrl;
 }
@@ -1474,3 +1489,4 @@ function addCommas(nStr)
     }
     return x1 + x2;
 }
+

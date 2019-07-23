@@ -153,10 +153,10 @@ environments {
         grails.resources.debug = true // cache & resources plugins
     }
     test {
-//        grails.serverURL = 'http://localhost:8080/' + appName
-//        serverName='http://localhost:8080/'
-          grails.serverURL = 'http://recherche.gbif.fr/'
-          serverName='http://recherche.gbif.fr/'
+        grails.serverURL = 'http://localhost:8080/' + appName
+        serverName='http://localhost:8080/'
+//         grails.serverURL = 'http://recherche.gbif.fr/'
+//          serverName='http://recherche.gbif.fr/'
 //        security.cas.appServerName = serverName
         //security.cas.contextPath = "/${appName}"
     }

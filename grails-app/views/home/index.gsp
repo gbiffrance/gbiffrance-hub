@@ -5,7 +5,7 @@
   Time: 3:15 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="au.org.ala.biocache.hubs.FacetsName; org.apache.commons.lang.StringUtils" contentType="text/html;charset=UTF-8" %>
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils; au.org.ala.biocache.hubs.FacetsName; org.apache.commons.lang.StringUtils" contentType="text/html;charset=UTF-8" %>
 <g:set var="hubDisplayName" value="${grailsApplication.config.skin.orgNameLong}"/>
 <g:set var="biocacheServiceUrl" value="${grailsApplication.config.biocache.baseUrl}"/>
 <g:set var="serverName" value="${grailsApplication.config.serverName?:grailsApplication.config.biocache.baseUrl}"/>
@@ -101,13 +101,14 @@
         }
     </style>
     <script src="http://maps.google.com/maps/api/js?v=3.5&sensor=false"></script>
-    <r:require modules="jquery, leaflet, mapCommon, bootstrap, alf, searchMap, bootstrapCombobox, bieAutocomplete"/>
+    <r:require modules="jquery, jquery_migration, leaflet, leafletPlugins, mapCommon, bootstrap, alf, searchMap, bootstrapCombobox, bieAutocomplete"/>
     <g:if test="${grailsApplication.config.skin.useAlaBie?.toBoolean()}">
         <r:require module="bieAutocomplete"/>
     </g:if>
     <r:script>
         // global var for GSP tags/vars to be passed into JS functions
         var BC_CONF = {
+            //bieWebServiceUrl: "${grailsApplication.config.bieService.baseUrl}",
             biocacheServiceUrl: "${alatag.getBiocacheAjaxUrl()}",
             bieWebappUrl: "${grailsApplication.config.bie.baseUrl}",
             autocompleteHints: ${grailsApplication.config.bie?.autocompleteHints?.encodeAsJson()?:'{}'},
@@ -115,6 +116,17 @@
             queryContext: "${grailsApplication.config.biocache.queryContext}",
             locale: "${org.springframework.web.servlet.support.RequestContextUtils.getLocale(request)}"
         }
+
+         /**
+             * Load Spring i18n messages into JS
+             */
+            jQuery.i18n.properties({
+                name: 'messages',
+                path: '${request.contextPath}/messages/i18n/',
+                mode: 'map',
+                language: BC_CONF.locale // default is to use browser specified locale
+                //callback: function(){} //alert( "facet.conservationStatus = " + jQuery.i18n.prop('facet.conservationStatus')); }
+            });
 
         $(document).ready(function() {
 
@@ -168,16 +180,7 @@
                 }
             });
 
-            /**
-             * Load Spring i18n messages into JS
-             */
-            jQuery.i18n.properties({
-                name: 'messages',
-                path: '${request.contextPath}/messages/i18n/',
-                mode: 'map',
-                language: '${request.locale}' // default is to use browser specified locale
-                //callback: function(){} //alert( "facet.conservationStatus = " + jQuery.i18n.prop('facet.conservationStatus')); }
-            });
+
 
         }); // end $(document).ready()
 
@@ -190,13 +193,20 @@
             }
         };
 
-        var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-            'Imagery © <a href="http://mapbox.com">Mapbox</a>';
+        //var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            //'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            //'Imagery © <a href="http://mapbox.com">Mapbox</a>';
         // var mbUrl = 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png';
         // var defaultBaseLayer = L.tileLayer(mbUrl, {id: 'examples.map-20v6611k', attribution: mbAttr});
-        var mbUrl = 'https://{s}.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={token}';
-        var defaultBaseLayer = L.tileLayer(mbUrl, {mapid: '${grailsApplication.config.map.mapbox.id}', token: '${grailsApplication.config.map.mapbox.token}', attribution: mbAttr});
+        // var mbUrl = 'https://{s}.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={token}';
+        // var defaultBaseLayer = L.tileLayer(mbUrl, {mapid: '${grailsApplication.config.map.mapbox.id}', token: '${grailsApplication.config.map.mapbox.token}', attribution: mbAttr});
+
+        var defaultBaseLayer = L.tileLayer("${grailsApplication.config.map.minimal.url}", {
+                                     attribution: "${raw(grailsApplication.config.map.minimal.attr)}",
+                                     subdomains: "${grailsApplication.config.map.minimal.subdomains}",
+                                     mapid: "${grailsApplication.config.map.mapbox?.id?:''}",
+                                     token: "${grailsApplication.config.map.mapbox?.token?:''}"
+                             });
 
         // Global var to store map config
         var MAP_VAR = {
@@ -346,7 +356,7 @@
     </r:script>
 </head>
 
-
+<body>
 
  <div class="row col-xs-12 col-sm-12">
     <div id="headingBar">
