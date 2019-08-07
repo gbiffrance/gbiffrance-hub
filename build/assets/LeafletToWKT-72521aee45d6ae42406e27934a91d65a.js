@@ -1,0 +1,2 @@
+//# sourceMappingURL=LeafletToWKT.js.map
+function toWKT(a){var e,f,d=[];if(a instanceof L.Polygon||a instanceof L.Polyline){for(var c=a.getLatLngs(),b=0;b<c.length;b++)c[b],d.push(c[b].lng+" "+c[b].lat),0===b&&(e=c[b].lng,f=c[b].lat);if(a instanceof L.Polygon)return"POLYGON(("+d.join(",")+","+e+" "+f+"))";if(a instanceof L.Polyline)return"LINESTRING("+d.join(",")+")"}else if(a instanceof L.Marker)return"POINT("+a.getLatLng().lng+" "+a.getLatLng().lat+")"};

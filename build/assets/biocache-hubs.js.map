@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"biocache-hubs.js",
+"lineCount":2,
+"mappings":"A;AAMsB,WAAtB,EAAI,MAAOA,QAAX,EAAqCA,OAAAC,eAAA,CAAuB,aAAvB,CAArC,EACIC,MAAAC,KAAAC,WAAA,CAAuB,CACnBC,KAAM,UADa,CAEnBC,KAAMN,OAAAO,YAAND,CAA4B,iBAFT,CAGnBE,KAAM,KAHa,CAInBC,SAAUT,OAAAU,OAJS,CAAvB;",
+"sources":["biocache-hubs.unminified.js"],
+"names":["BC_CONF","hasOwnProperty","jQuery","i18n","properties","name","path","contextPath","mode","language","locale"]
+}

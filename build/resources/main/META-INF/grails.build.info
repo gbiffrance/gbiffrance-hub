@@ -1,0 +1,6 @@
+#Wed, 07 Aug 2019 10:54:42 +0200
+
+info.app.version=1.0.3
+info.app.name=gbifbenin-hub
+grails.env=development
+info.app.grailsVersion=3.2.11

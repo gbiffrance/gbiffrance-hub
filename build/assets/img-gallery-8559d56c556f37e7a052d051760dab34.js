@@ -1,0 +1,2 @@
+//# sourceMappingURL=img-gallery.js.map
+var GalleryWidget=function(a,b){$("#"+a).sliderPro($.extend({width:"100%",height:"100%",fade:!0,arrows:!1,buttons:!1,fullScreen:!1,shuffle:!1,thumbnailArrows:!0,autoplay:!1},b));return{destroy:function(){imgvwr.removeCurrentImage();$("#"+a).empty();$("#"+a).sliderPro("update");$("#"+a).sliderPro("destroy")}}};

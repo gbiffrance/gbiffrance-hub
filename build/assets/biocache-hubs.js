@@ -1,0 +1,2 @@
+//# sourceMappingURL=biocache-hubs.js.map
+"undefined"!=typeof BC_CONF&&BC_CONF.hasOwnProperty("contextPath")&&jQuery.i18n.properties({name:"messages",path:BC_CONF.contextPath+"/messages/i18n/",mode:"map",language:BC_CONF.locale});
