@@ -14,6 +14,10 @@
  *= require base.css
  */
 
+/*----------------------------------------*/
+/*              Ecran mobile              */
+/*----------------------------------------*/
+
 /*------------------Pages-----------------*/
 h1{
     border-bottom: 4px solid #CC424E;
@@ -27,7 +31,17 @@ h1{
     text-transform: uppercase;
 }
 
+#main {
+    background-color: white;
+}
+
 /*------------------Fil d'Ariane-----------------*/
+#breadcrumb {
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #breadcrumb > .container-fluid, #main-content{
     padding-top: 0%;
 }
@@ -65,10 +79,9 @@ h1{
 
 .breadcrumb-list{
     background-color: white;
-    font-size: 80%;
     margin-bottom: 0px;
     padding-top: 2%;
-    padding-left: 2%;
+    padding-bottom: 2%;
 }
 
 .row-breadcrumb{
@@ -77,15 +90,6 @@ h1{
 }
 
 /*------------------Menu-----------------*/
-.container-fluid {
-    padding-right: 2%;
-    padding-left: 2%;
-    padding-top: 2%;
-    margin-right: 2%;
-    margin-left: 2%;
-    background-color: white;
-}
-
 .nav-tabs li:not(.active) a {
     color: #A6AC1A !important;
 }
@@ -117,4 +121,42 @@ h1{
 .row-partenaire {
     margin-right: 2%;
     margin-left: 2%;
+    background-color: white;
+}
+
+
+/*----------------------------------------*/
+/*           Ordinateur de bureau         */
+/*----------------------------------------*/
+
+@media only screen and (min-width:1300px){
+
+    /*------------------Pages-----------------*/
+    #main {
+        width: 1170px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    /*------------------Fil d'Ariane-----------------*/
+    #breadcrumb > .container-fluid, #main-content {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    body.fluid #breadcrumb .breadcrumb-list {
+        margin-left: 0px;
+    }
+
+    /*------------------Logo-----------------*/
+    .row-partenaires {
+        background-color: white;
+    }
 }

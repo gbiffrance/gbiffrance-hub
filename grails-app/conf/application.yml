@@ -28,7 +28,7 @@ info:
         name: '@info.app.name@'
         version: '@info.app.version@'
         grailsVersion: '@info.app.grailsVersion@'
-        description: 'Portail du GBIF Bénin'
+        description: 'Portail français du GBIF'
 spring:
     main:
         banner-mode: "off"
@@ -92,9 +92,9 @@ grails:
                 staticparts: none
 ---
 skin:
-    layout: "ala"
-    orgNameLong: "GBIF Bénin"
-    orgNameShort: "GBIF Benin"
+    layout: "alf"
+    orgNameLong: "GBIF France"
+    orgNameShort: "GBIF France"
 privacyPolicy: ""
 
 security:
@@ -119,4 +119,4 @@ environments:
                 appServerName: ""
     production:
         grails:
-            serverURL: "http://recherche.gbifbenin.org"
+            serverURL: "http://recherche.gbif.fr"
