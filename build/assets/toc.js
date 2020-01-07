@@ -1,0 +1,4 @@
+//# sourceMappingURL=toc.js.map
+var bookmark,toc,curr,next;
+$(function(){if(0<$("#toc").length){$("#toc").css({"background-color":"#eeeeee"});toc="<ul>";var a=$("h2, h3, h4");a.each(function(b){curr=$(this).get(0).nodeName;next=b<a.length-1?a.get(b+1).nodeName:!1;bookmark=$(this).html();bookmark=$.trim(bookmark).replace(/ /g,"_").toLowerCase();$(this).attr("id",bookmark);"H2"==curr?(toc+='<li class="toclevel-1"><a href=#'+bookmark+'><span class="toctext">'+$(this).html()+"</span></a>","H3"==next?toc+="<ul>":"H2"!=next&&next||(toc+="</li>")):"H3"==curr?(toc+=
+'<li class="toclevel-2"><a href=#'+bookmark+'><span class="toctext">'+$(this).html()+"</span></a>","H4"==next?toc+="<ul>":"H2"!=next&&next||(toc+="</li></ul></li>")):"H4"==curr&&(toc+='<li class="toclevel-3"><a href=#'+bookmark+'><span class="toctext">'+$(this).html()+"</span></a></li>","H3"==next?toc+="</ul></li>":"H2"!=next&&next||(toc+="</ul></li></ul></li>"))});toc+="</ul>";$("#toc").append(toc)}});

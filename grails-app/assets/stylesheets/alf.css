@@ -1,0 +1,162 @@
+/*
+ * This is a manifest file that'll be compiled into alaBs.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS file within this directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ * // require bootstrap
+ *= require hubCore
+ *= require ala-extra.css
+ *= require autocomplete.css
+ *= require base.css
+ */
+
+/*----------------------------------------*/
+/*              Ecran mobile              */
+/*----------------------------------------*/
+
+/*------------------Pages-----------------*/
+h1{
+    border-bottom: 4px solid #CC424E;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    font-size: 1.5em;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.2em;
+    margin-top: 0;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+#main {
+    background-color: white;
+}
+
+/*------------------Fil d'Ariane-----------------*/
+#breadcrumb {
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#breadcrumb > .container-fluid, #main-content{
+    padding-top: 0%;
+}
+
+.breadcrumb {
+    margin: 0% 2% 0% 2%;
+    background-color: white;
+    font-size: 80%;
+    padding: 0;
+    padding: 1% 1% 1% 1%;
+    border-radius: 0px;
+}
+
+.breadcrumb li:first-child {
+    background-image: url("img/arrow_state_grey_right.png");
+    background-position: -1px center;
+    background-repeat: no-repeat;
+}
+
+.breadcrumb li:last-child{
+    color: #CB3B59;
+    font-weight: 700;
+}
+
+.breadcrumb>li {
+    display: inline;
+    margin-left: 0.5%;
+}
+
+.breadcrumb-list>li{
+    display: inline;
+    margin-left: 0.5%;
+    text-rendering: geometricPrecision;
+}
+
+.breadcrumb-list{
+    background-color: white;
+    margin-bottom: 0px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.row-breadcrumb{
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+/*------------------Menu-----------------*/
+.nav-tabs li:not(.active) a {
+    color: #A6AC1A !important;
+}
+
+.tab-content{
+    border-bottom: 1px solid #DDDDDD  !important;
+    border-right: 1px solid #DDDDDD  !important;
+    border-left: 1px solid #DDDDDD !important;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: #A6AC1A !important;
+}
+
+/*------------------Formulaires-----------------*/
+
+.btn-primary {
+    background-image: -webkit-linear-gradient(top,#887E7C 0,#887E7C 100%);
+    background-image: -o-linear-gradient(top,#887E7C 0,#887E7C 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#887E7C),to(#887E7C));
+    background-image: linear-gradient(to bottom,#887E7C 0,#887E7C 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#887E7C', endColorstr='#887E7C', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #887E7C;
+    color: #FFFFFF;
+}
+
+/*------------------Logo-----------------*/
+.row-partenaire {
+    margin-right: 2%;
+    margin-left: 2%;
+    background-color: white;
+}
+
+
+/*----------------------------------------*/
+/*           Ordinateur de bureau         */
+/*----------------------------------------*/
+
+@media only screen and (min-width:1300px){
+
+    /*------------------Pages-----------------*/
+    #main {
+        width: 1170px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    /*------------------Fil d'Ariane-----------------*/
+    #breadcrumb > .container-fluid, #main-content {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    body.fluid #breadcrumb .breadcrumb-list {
+        margin-left: 0px;
+    }
+
+    /*------------------Logo-----------------*/
+    .row-partenaires {
+        background-color: white;
+    }
+}

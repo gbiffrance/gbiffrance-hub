@@ -1,0 +1,6 @@
+#Wed, 06 Nov 2019 15:46:45 -0800
+
+info.app.version=1.13
+info.app.name=gbiffrance-hub
+grails.env=production
+info.app.grailsVersion=3.2.11

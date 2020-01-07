@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"img-gallery.js",
+"lineCount":2,
+"mappings":"A;AAOA,IAAIA,cAAgBA,QAAQ,CAACC,CAAD,CAAcC,CAAd,CAAuB,CAe3CC,CAAA,CAAE,GAAF,CAAQF,CAAR,CAAAG,UAAA,CAA+BD,CAAAE,OAAA,CAbdC,CACjBC,MAAO,MADUD,CAEjBE,OAAQ,MAFSF,CAGjBG,KAAM,CAAA,CAHWH,CAIjBI,OAAQ,CAAA,CAJSJ,CAKjBK,QAAS,CAAA,CALQL,CAMjBM,WAAY,CAAA,CANKN,CAOjBO,QAAS,CAAA,CAPQP,CAQjBQ,gBAAiB,CAAA,CARAR,CASjBS,SAAU,CAAA,CATOT,CAac,CAAyBJ,CAAzB,CAA/B,CAIJ,OAAO,CACHc,QAASA,QAAQ,EAAG,CAChBC,MAAAC,mBAAA,EACAf,EAAA,CAAE,GAAF,CAAQF,CAAR,CAAAkB,MAAA,EACAhB,EAAA,CAAE,GAAF,CAAQF,CAAR,CAAAG,UAAA,CAA+B,QAA/B,CACAD,EAAA,CAAE,GAAF,CAAQF,CAAR,CAAAG,UAAA,CAA+B,SAA/B,CAJgB,CADjB,CAnBwC;",
+"sources":["img-gallery.unminified.js"],
+"names":["GalleryWidget","containerId","options","$","sliderPro","extend","defaultOptions","width","height","fade","arrows","buttons","fullScreen","shuffle","thumbnailArrows","autoplay","destroy","imgvwr","removeCurrentImage","empty"]
+}

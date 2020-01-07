@@ -1,0 +1,2 @@
+t[gbiffrance-hub] Including default configuration file: /data/gbiffrance-hub/config/gbiffrance-hub-config.properties
+s[gbiffrance-hub] (*) grails.config.locations = [file:/data/gbiffrance-hub/config/gbiffrance-hub-config.properties]
